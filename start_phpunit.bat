@@ -1,0 +1,1 @@
+C:\xampp\htdocs\mebismaster\vendor\bin\phpunit.bat local_mbseasyforms_testcase C:\xampp\htdocs\mebismaster\local\mbseasyforms\tests\mbseasyforms_test.php
