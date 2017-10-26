@@ -33,10 +33,10 @@ function local_mbseasyforms_before_footer() {
         $moreoptions = get_string('moreoptions', 'local_mbseasyforms');
 
         //read data from config
-        $ids = get_config('local_mbseasyforms', 'easyformsconfig');
+        $config = get_config('local_mbseasyforms', 'easyformsconfig');
 
         //param needs to be in array format
-        $params = array("$ids&&$theme&&$moreoptions");
+        $params = array($config);
 
         //pass them to js and initialize
         $PAGE->requires->js_call_amd('local_mbseasyforms/mbseasyforms', 'init', $params);

@@ -1,80 +1,176 @@
 define(['jquery'], function($) {
- 
-    var mbseasynav = function(params) {
-    	var params_arr 	= params.split("&&");
-		var ids 		= params_arr[0];
-		var theme 		= params_arr[1];
-		var moreoptions = params_arr[2];
 
-		//select correct css class to hide elements
-		var css_hide = "";
-		if (theme == "boost") {
-			css_hide = "hidden";
-		} else {
-			css_hide = "hide";
-		}
+    var mbseasyform = function(params) {
+    	
+		//check if there is a form on the page
+ 		if ( $('form.mform').length) {
 
-    	/*hide collapsed bars*/
-        //if more than 1 element to hide
-        if ( $( "form.mform .collapsed" ).length > 1 )
-        {        	
-        	//boost css adaption
-        	if (theme == "boost") {
-				$("head").append("<style> fieldset.hidden.collapsible{ display:none !important; visibility: hidden !important; } </style>");;
-			}
+ 			//variables
+	    	var config 	= JSON.parse(params);
+	    	var body_id = $('body').attr('id');
+	    	var has_config = false;
+	    	var default_disabled = false;
+	    	var id_arr = [];
+	    	if ( config[body_id]) {
+	    		default_disabled = config[body_id].default_disabled;
+	    		if (config[body_id].elements) {
+		    		id_arr = config[body_id].elements;
+		    		has_config = true;
+	    		}
+	    	}
+			var css_hide = "easyhide";      
 
-        	//first collapsed menu item
-        	var first_collapsed = $( "form.mform .collapsed" ).first();
 
-            //add class hide to collapsed items
-            $( 'form.mform .collapsed' ).each(function() {
+			//fordev
+			var custom_css = "" ;
+			//or place for custom css
+			$("head").append(
+				`'<style> 
+
+				.easyform {
+					padding-left: 20px;
+					padding-right: 10px;
+
+					background: no-repeat;
+					background-position: left;
+					background-image: url(/mbsmoodle/theme/image.php/mebis/core/1509008026/t/collapsed);
+				}
+
+				.easyform.collapsed {
+					background-image: url(/mbsmoodle/theme/image.php/mebis/core/1509008026/t/expanded);
+				}
+
+				.easyhide {
+					display: none;
+				}
+
+				fieldset.easyAdapt {
+					margin: 0px !important;
+				}
+				fieldset.easyAdapt .fcontainer {
+					padding: 0px !important;
+				}
+				</style>)'`);				
+			//end_fordev
+
+            //hide Header: legend .ftoggler
+            $( '.ftoggler' ).each(function() {
                 $(this).addClass( css_hide + ' newtoggle' );
-            })
-
-            //add menu bar to show them again
-            $( "<fieldset id='newtoggler' class='clearfix collapsible collapsed'><legend class='ftoggler'>"+ moreoptions +"</legend></fieldset>" ).insertBefore( first_collapsed );
-            $( "#newtoggler").click(function(){
-                $( '.newtoggle' ).each(function() {
-                    $(this).toggleClass( css_hide );
-                })            
+            });
+            // hide Input rows
+            $( '.fitem' ).each(function() {
+            	//if not required or buttons (.req for bootstrap - fa-exla... for boost)
+            	if ($(this).find('.req').length !== 1 && $(this).find('.fa-exclamation-circle').length !== 1 && !$(this).hasClass('fitem_actionbuttons')) {
+					//if not in specified elements
+					if (has_config)
+					{
+						var hide = true;
+						for (var i = 0, len = id_arr.length; i < len; i++) {
+							if ($(this).is('#' + id_arr[i]))
+							{
+								hide = false;
+								//make sure it is visible
+								$(this).parents('fieldset').removeClass('collapsed');
+								//mark element as to show
+								$(this).addClass( 'easyShow' );
+							}
+						}
+						if (hide) {
+							$(this).addClass( css_hide + ' newtoggle' );		
+						}
+					}	
+					else
+					{
+                		$(this).addClass( css_hide + ' newtoggle' );
+					}
+            	}
+            	else {
+					//mark element as to show
+					$(this).addClass( 'easyShow' );
+            	}
             });
 
-        	//make link to expand all, wait till yui loaded
+            //add class to remove used space of hidden elements
+            $( 'fieldset.collapsible' ).each(function() {
+                $(this).addClass( 'easyAdapt toggleAdapt' );
+            });
+
+            //create toggle link
+            //Is there a collapse all option - then create link inside its div
+            if ( $('.collapsible-actions').length )
+            {
+            	$('.collapsible-actions').prepend("<a id='easyform_click' href='#' role='button' class='easyform'>EasyForm</a>");
+
+            }
+            else
+            {
+            	//always collapsible actions ?
+            }
+            //if collapse on per default add class
+            if (default_disabled)
+            {
+            	$('#easyform_click').addClass('collapsed');
+            }
+
+        	//Easyform switch
 			Y.on('domready', function(){
-	            $( ".collapseexpand").first().click(function(){
+	            $( "#easyform_click").click(function(){
+	            	//hide elements
 	                $( '.newtoggle' ).each(function() {
 	                    $(this).toggleClass( css_hide );
 	                })            
-	            });    				
-			});
-        }
+	                //adapt css
+	                $( '.toggleAdapt' ).each(function() {
+	                    $(this).toggleClass( "easyAdapt" );
+	                })        
+	         		$('#easyform_click').toggleClass('collapsed');
 
-        /*hide certain rows*/
-        if (ids != null)
-        {
-	        var id_array = ids.split(",");
-	        for (var i = 0, len = id_array.length; i < len; i++) {
-				//get row 
-				var ident = id_array[i].toString();
-				ident = ident.trim();
-				//remove comment
-				if (ident.indexOf('#') > -1) {
-					ident = ident.substr(0, ident.indexOf('#')); 
-				}
-				//look for id or class element
-				if ($( '#' + ident ).length) {
-					$( '#' + ident ).closest('.fitem').addClass(css_hide);
-				}
-				else if ($( '.' + ident ).length) {
-					$( '.' + ident ).closest('.fitem').addClass(css_hide);
-				}
-			}
-        }
+	         		//if uncollapse all was clicked before
+	                $( '.easyShow' ).each(function() {
+	                    $(this).parents('.collapsible').removeClass( "collapsed" );
+	                })      
+	            });    		
+
+				//Collapse all compatibility
+				$('.collapseexpand').click(function(){
+	                $( '.newtoggle' ).each(function() {
+	                    $(this).removeClass( css_hide );
+	                })            
+	                $( '.toggleAdapt' ).each(function() {
+	                    $(this).removeClass( "easyAdapt" );
+	                })   
+	                $('#easyform_click').removeClass('collapsed');     										
+				});	            		
+			});            
+
+ 		}
     };
+
 
     return {
         init: function(params) {
-            mbseasynav(params);
+            mbseasyform(params);
         }
     };
 });
+
+//evtl settings für custom css was per js nachgeladen wird
+//css in scss file background
+// .collapsible-actions .collapseexpand {
+//     padding-left: 20px;
+//     background: url([[pix:t/collapsed]]) 2px center no-repeat;
+// }
+// .collapsible-actions .collapse-all {
+//     background-image: url([[pix:t/expanded]]);
+// }	
+
+
+//example json
+// {
+//     "page-course-edit": 
+//      {
+//         "_comment": "Kurs erstellen - body_id als selektor welche elemente",
+//         "default_disabled": false,
+//         "elements": ["fitem_id_category", "fitem_id_format"]
+//      }
+// }
