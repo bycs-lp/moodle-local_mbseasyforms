@@ -24,9 +24,25 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['displayname'] = 'Easy Forms';
-$string['easyformsconfig'] = 'Hide certain Elements';
-$string['easyformsconfig_expl'] = 'Insert ID or Class of the element to hide, multiple separated through comma.<br>Comment after #. EG  "id_idnumber#ID Course,..."';
+$string['easyformsconfig'] = 'Configuration';
+$string['easyformsconfig_expl'] = 'As default only required elements are shown.The configuration to show more option follows the JSON-Format.<br>
+It begins with the body#id and different elements can be selected to show by their fitem_id
+Example:<br>
+{<br>
+    &nbsp;&nbsp;"page-course-edit":<br>&nbsp;
+     &nbsp;&nbsp;{<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"_comment": "Kurs erstellen - body_id als selektor welche elemente",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"default_disabled": false,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"elements": ["fitem_id_category", "fitem_id_format"]<br>
+     &nbsp;&nbsp;},<br>
+    &nbsp;&nbsp;"page-user-editadvanced":<br>
+     &nbsp;&nbsp;{<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"_comment": "Nutzerprofil - Standardmäßig deaktiviert - es muss erst angeklickt werden",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"default_disabled": true,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"elements": []<br>
+     &nbsp;&nbsp;}<br>
+}';
 $string['pluginname'] = 'mebis Easy Forms';
-$string['useeasyforms'] = 'Use shortened forms in activities and materials';
-$string['moreoptions'] = 'More Options';
+$string['useeasyforms'] = 'Use shortened forms';
+$string['csssettings'] = 'Custom css';
 

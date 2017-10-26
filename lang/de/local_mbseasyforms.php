@@ -24,8 +24,23 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['displayname'] = 'Easy Forms';
-$string['easyformsconfig'] = 'Einzelne Felder ausblenden';
-$string['easyformsconfig_expl'] = 'ID oder Klasse des Felds eintragen, mehrere durch Komma getrennt.<br>Kommentar nach #. Z.B. "id_idnumber#ID Kurs,..."';
+$string['easyformsconfig'] = 'Konfiguration';
+$string['easyformsconfig_expl'] = 'Als Standard werden nur benötigte Felder angezeigt.Die Konfiguration um zusätzliche ELemente anzuzeigen des Plugins erfolgt im JSON-Format.<br>
+Beginnend mit der body#id können Elemente über die fitem_id hinzugeschaltet werden.<br>Beispiel:<br>
+{<br>
+    &nbsp;&nbsp;"page-course-edit":<br>&nbsp;
+     &nbsp;&nbsp;{<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"_comment": "Kurs erstellen - body_id als selektor welche elemente",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"default_disabled": false,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"elements": ["fitem_id_category", "fitem_id_format"]<br>
+     &nbsp;&nbsp;},<br>
+    &nbsp;&nbsp;"page-user-editadvanced":<br>
+     &nbsp;&nbsp;{<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"_comment": "Nutzerprofil - Standardmäßig deaktiviert - es muss erst angeklickt werden",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"default_disabled": true,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"elements": []<br>
+     &nbsp;&nbsp;}<br>
+}';
 $string['pluginname'] = 'mebis Easy Forms';
-$string['useeasyforms'] = 'Verkürzte Formulare beim Anlegen von Aktivitäten und Material verwenden';
-$string['moreoptions'] = 'Mehr Optionen';
+$string['useeasyforms'] = 'Verkürzte Formulare verwenden';
+$string['csssettings'] = 'Eigenes Css';
