@@ -2,11 +2,21 @@ define(['jquery'], function($) {
 
     var mbseasyform = function(params) {
     	
-		//check if there is a form on the page
- 		if ( $('form.mform').length) {
+    	console.log("easyform loaded");
+
+		//check if there is a form with collapsible-actions on the page
+ 		if ( $('form.mform').length && $('.collapsible-actions').length ) {
 
  			//variables
-	    	var config 	= JSON.parse(params);
+ 			var tmp = params.split('#!#');
+ 			console.log(tmp);
+ 			try {
+	    		var config 	= JSON.parse(tmp[0]);
+ 			} catch (e) {
+ 				console.log("EasyForm-Plugin: Error in JSON-Config: " + e);
+ 				var config = JSON.parse(`{}`);
+ 			}
+ 			var theme = tmp[1];
 	    	var body_id = $('body').attr('id');
 	    	var has_config = false;
 	    	var default_disabled = false;
@@ -20,26 +30,15 @@ define(['jquery'], function($) {
 	    	}
 			var css_hide = "easyhide";      
 
-
-			//fordev
-			var custom_css = "" ;
-			//or place for custom css
-			$("head").append(
-				`'<style> 
-
+			//css
+			var css = `<style> 
 				.easyform {
 					padding-left: 20px;
 					padding-right: 10px;
 
 					background: no-repeat;
 					background-position: left;
-					background-image: url(/mbsmoodle/theme/image.php/mebis/core/1509008026/t/collapsed);
 				}
-
-				.easyform.collapsed {
-					background-image: url(/mbsmoodle/theme/image.php/mebis/core/1509008026/t/expanded);
-				}
-
 				.easyhide {
 					display: none;
 				}
@@ -49,9 +48,37 @@ define(['jquery'], function($) {
 				}
 				fieldset.easyAdapt .fcontainer {
 					padding: 0px !important;
-				}
-				</style>)'`);				
-			//end_fordev
+				}`;
+			//css adapt to theme				
+			if (theme == "boost") {
+				console.log("this");
+				css += `.easyform {
+							padding-left: 20px;
+							padding-right: 10px;
+							background: url(/mbsmoodle/theme/image.php/boost/core/1509090696/t/collapsed) 2px center no-repeat;
+						} 
+						.easyform.collapsed {
+							background-image: url(/mbsmoodle/theme/image.php/boost/core/1509090696/t/expanded);
+						}`;
+			} else if (theme == "mebis") {
+				css += `.easyform {
+							background-image: url(/mbsmoodle/theme/image.php/mebis/core/1509008026/t/collapsed);
+						} 
+						.easyform.collapsed {
+							background-image: url(/mbsmoodle/theme/image.php/mebis/core/1509008026/t/expanded);
+						}`;
+			} else if (theme == "clean") {
+				css += `.easyform {
+							padding-left: 20px;
+							padding-right: 10px;
+							background: url(/mbsmoodle/theme/image.php/clean/core/1509090696/t/collapsed) 2px center no-repeat;
+						} 
+						.easyform.collapsed {
+							background-image: url(/mbsmoodle/theme/image.php/clean/core/1509090696/t/expanded);
+						}`;
+			}
+			css += "</style>";
+			$("head").append(css);				
 
             //hide Header: legend .ftoggler
             $( '.ftoggler' ).each(function() {
@@ -76,9 +103,9 @@ define(['jquery'], function($) {
 							}
 						}
 						if (hide) {
-							$(this).addClass( css_hide + ' newtoggle' );		
+							$(this).addClass( css_hide + ' newtoggle' );
 						}
-					}	
+					}
 					else
 					{
                 		$(this).addClass( css_hide + ' newtoggle' );
@@ -105,6 +132,8 @@ define(['jquery'], function($) {
             else
             {
             	//always collapsible actions ?
+            	//gerade auch in übergeordneter if anweisung
+            	console.log("error: .collapsible-actions not found");
             }
             //if collapse on per default add class
             if (default_disabled)
@@ -129,7 +158,7 @@ define(['jquery'], function($) {
 	                $( '.easyShow' ).each(function() {
 	                    $(this).parents('.collapsible').removeClass( "collapsed" );
 	                })      
-	            });    		
+	            });
 
 				//Collapse all compatibility
 				$('.collapseexpand').click(function(){
@@ -164,13 +193,3 @@ define(['jquery'], function($) {
 //     background-image: url([[pix:t/expanded]]);
 // }	
 
-
-//example json
-// {
-//     "page-course-edit": 
-//      {
-//         "_comment": "Kurs erstellen - body_id als selektor welche elemente",
-//         "default_disabled": false,
-//         "elements": ["fitem_id_category", "fitem_id_format"]
-//      }
-// }
