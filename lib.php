@@ -27,11 +27,14 @@ defined('MOODLE_INTERNAL') || die();
 function local_mbseasyforms_before_footer() {
         global $PAGE;
 
+        //get current theme
+        $theme = $PAGE->theme->name;
+
         //read data from config
         $config = get_config('local_mbseasyforms', 'easyformsconfig');
 
         //param needs to be in array format
-        $params = array($config);
+        $params = array($config . '#!#' .  $theme);
 
         //pass them to js and initialize
         $PAGE->requires->js_call_amd('local_mbseasyforms/mbseasyforms', 'init', $params);
