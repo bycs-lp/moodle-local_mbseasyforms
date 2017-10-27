@@ -2,8 +2,6 @@ define(['jquery'], function($) {
 
     var mbseasyform = function(params) {
     	
-    	console.log("easyform loaded");
-
 		//check if there is a form with collapsible-actions on the page
  		if ( $('form.mform').length && $('.collapsible-actions').length ) {
 
@@ -129,12 +127,7 @@ define(['jquery'], function($) {
             	$('.collapsible-actions').prepend("<a id='easyform_click' href='#' role='button' class='easyform'>EasyForm</a>");
 
             }
-            else
-            {
-            	//always collapsible actions ?
-            	//gerade auch in übergeordneter if anweisung
-            	console.log("error: .collapsible-actions not found");
-            }
+
             //if collapse on per default add class
             if (default_disabled)
             {
@@ -154,7 +147,7 @@ define(['jquery'], function($) {
 	                })        
 	         		$('#easyform_click').toggleClass('collapsed');
 
-	         		//if uncollapse all was clicked before
+	         		//if collapse all was clicked before uncollapse
 	                $( '.easyShow' ).each(function() {
 	                    $(this).parents('.collapsible').removeClass( "collapsed" );
 	                })      
@@ -182,14 +175,3 @@ define(['jquery'], function($) {
         }
     };
 });
-
-//evtl settings für custom css was per js nachgeladen wird
-//css in scss file background
-// .collapsible-actions .collapseexpand {
-//     padding-left: 20px;
-//     background: url([[pix:t/collapsed]]) 2px center no-repeat;
-// }
-// .collapsible-actions .collapse-all {
-//     background-image: url([[pix:t/expanded]]);
-// }	
-
