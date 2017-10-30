@@ -8,7 +8,6 @@ define(['jquery'], function($) {
  			/*variables*/
  			/**********/
  			var tmp = params.split('#!#');
- 			console.log(tmp);
  			try {
 	    		var config 	= JSON.parse(tmp[0]);
  			} catch (e) {
@@ -18,9 +17,13 @@ define(['jquery'], function($) {
  			var theme = tmp[1];
  			var showall = tmp[2];
  			var showless = tmp[3];
+ 			var user_setting = tmp[4];
+ 			console.log(params);
+ 			console.log('###');
+ 			console.log(tmp[4]);
 	    	var body_id = $('body').attr('id');
-	    	var has_config = false;
 	    	var default_disabled = false;
+	    	var has_config = false;
 	    	var id_arr = [];
 	    	//read config
 	    	if ( config[body_id]) {
@@ -86,11 +89,19 @@ define(['jquery'], function($) {
 
             }
 
-            //if collapse on per default add class
-            if (default_disabled)
+            //if easyform disabled through conf or user setting  
+            if (default_disabled || user_setting === "0")
             {
             	$('#easyform_click').addClass('collapsed');
             	$('#easyform_click').html(showless);
+            	//show elements
+                $( '.newtoggle' ).each(function() {
+                    $(this).removeClass( css_hide );
+                })            
+                //adapt css
+                $( '.toggleAdapt' ).each(function() {
+                    $(this).removeClass( "easyAdapt" );
+                })             	
             }
 
         	//Easyform switch

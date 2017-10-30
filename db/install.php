@@ -25,7 +25,8 @@
 defined('MOODLE_INTERNAL') || die;
 function xmldb_local_mbseasyforms_install() {
 	//set default config
-	$name  = '{
+	$name = "easyformsconfig";
+  $value  = '{
   "page-course-edit":
     {
     "_comment": "Kurs erstellen - body_id als selektor welche elemente",
@@ -39,7 +40,6 @@ function xmldb_local_mbseasyforms_install() {
     "elements": []
   }
 }';
-	$value = "test config";
 	set_config($name, $value, 'local_mbseasyforms');
 }
 
