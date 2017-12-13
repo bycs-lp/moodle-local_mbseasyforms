@@ -117,6 +117,18 @@ function xmldb_local_mbseasyforms_install() {
     "default_disabled": true,
     "elements": ["fitem_id_introeditor", "fitem_id_showdescription", "fitem_id_strategy", "fgroup_id_submissiongradegroup", "fitem_id_submissiongradepass", "fgroup_id_gradinggradegroup", "fitem_id_gradinggradepass", "fitem_id_instructauthorseditor",  "fitem_id_completion", "fitem_id_completionview", "fitem_id_completionusegrade"]  
   },
+  "page-mod-workshop-editform":
+  {
+    "_comment": "Workshop - Beurteilungsbogen bearbeiten",
+    "default_disabled": true,
+    "elements": []  
+  },
+  "page-mod-workshop-allocation":
+  {
+    "_comment": "Workshop - Einreichungen zuordnen",
+    "default_disabled": true,
+    "elements": []  
+  },
   "page-mod-geogebra-mod":
   {
     "_comment": "Geogebra",
@@ -266,7 +278,13 @@ function xmldb_local_mbseasyforms_install() {
     "_comment": "Teachshare - Kurs kopieren",
     "default_disabled": true,
     "elements": []  
-  }  
+  },
+  "page-local-mbslicenseinfo-editlicenses":
+  {
+    "_comment": "Quellenangaben bearbeiten",
+    "default_disabled": true,
+    "elements": []  
+  }
 }';
   set_config($name, $value, 'local_mbseasyforms');
 }
