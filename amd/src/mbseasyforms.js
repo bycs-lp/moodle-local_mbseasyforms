@@ -104,6 +104,8 @@ define(['jquery'], function($) {
 					$(this).removeClass( "easyAdapt" );
 				});
 				$( '#fgroup_id_buttonar' ).removeClass( "easyon" );
+				//show collapse all
+				$('.collapseexpand').first().removeClass('hidden');
 			}
 
 			//Easyform switch

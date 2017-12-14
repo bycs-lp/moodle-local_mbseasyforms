@@ -195,6 +195,12 @@ function xmldb_local_mbseasyforms_install() {
     "default_disabled": false,
     "elements": [ "fitem_id_introeditor", "fitem_id_showdescription", "fitem_id_completion", "fitem_id_gradeboundarystatic1", "fitem_id_feedbacktext_0", "fitem_id_feedbackboundaries_0", "fitem_id_feedbacktext_1", "fitem_id_feedbackboundaries_1", "fitem_id_feedbacktext_2", "fitem_id_feedbackboundaries_2", "fitem_id_feedbacktext_3", "fitem_id_feedbackboundaries_3", "fitem_id_feedbacktext_4",  "fitem_id_gradeboundarystatic2", "fitem_id_completionview", "fitem_id_completionusegrade", "fgroup_id_completionpassgroup"]  
   },
+  "page-mod-quiz-report":
+  {
+    "_comment": "Test - Bewertung",
+    "default_disabled": true,
+    "elements": []  
+  },
   "page-mod-wiki-mod":
   {
     "_comment": "Wiki",
