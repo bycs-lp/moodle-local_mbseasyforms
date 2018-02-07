@@ -31,7 +31,7 @@ function xmldb_local_mbseasyforms_install() {
     {
     "_comment": "Kurs erstellen",
     "default_disabled": false,
-    "elements": ["fitem_id_category", "fitem_id_format", "fitem_id_numsections"]
+    "elements": ["fitem_id_category", "fitem_id_format", "fitem_id_numsections", "fitem_id_activitytype", "fitem_id_numdiscussions"]
   },
   "page-course-editsection":
     {
@@ -398,6 +398,12 @@ function xmldb_local_mbseasyforms_install() {
     "_comment": "Beschreibung",
     "default_disabled": true,
     "elements": []  
+  },
+  "page-mod-individualfeedback-mod":
+  {
+    "_comment": "Individuelles Feedback",
+    "default_disabled": false,
+    "elements": ["fitem_id_timeopen", "fitem_id_timeclose"]  
   }
 }';
   set_config($name, $value, 'local_mbseasyforms');
