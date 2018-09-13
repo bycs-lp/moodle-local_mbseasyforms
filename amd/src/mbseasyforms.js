@@ -31,6 +31,10 @@ define(['jquery'], function($) {
 				}
 			}
 			var css_hide = "easyhide";
+			//disable for behat testing
+			if (jQuery.isEmptyObject(config)) {
+				default_disabled = true;
+			}
 
 			/*hide things*/
 			/************/
@@ -44,7 +48,7 @@ define(['jquery'], function($) {
 				if ($(this).find('.req').length !== 1 && $(this).find('.fa-exclamation-circle').length !== 1 && !$(this).hasClass('fitem_actionbuttons')) {
 					//if not in specified elements
 					if (has_config)
-					{
+					{						
 						var hide = true;
 						for (var i = 0, len = id_arr.length; i < len; i++) {
 							if ($(this).is('#' + id_arr[i]))
