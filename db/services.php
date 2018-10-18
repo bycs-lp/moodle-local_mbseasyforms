@@ -16,20 +16,22 @@
 
 /**
  * local mbseasyforms webservice definitions
- * 
+ *
  * @package    local_mbseasyforms
  * @copyright  2017 Franziska Hübler, ISB Bayern
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 $functions = array(
-    'local_mbseasyforms_use_pref' => array(                                                                              
-            'classname'   => 'local_mbseasyforms\external',
-            'methodname'  => 'use_pref',
-            'classpath'   => '',
-            'description' => 'Get and set the users preference for use mbseasyforms.',
-            'type'        => 'write',
-            'capabilities'=> 'local/mbs:editownmebisprefs',
-            'ajax'        => true
-    )
+    'local_mbseasyforms_use_pref' => array(
+        'classname' => 'local_mbseasyforms\external',
+        'methodname' => 'use_pref',
+        'classpath' => '',
+        'description' => 'Get and set the users preference for use mbseasyforms.',
+        'type' => 'write',
+        'capabilities' => 'local/mbs:editownmebisprefs',
+        'ajax' => true,
+    ),
 );

@@ -1,48 +1,47 @@
 /*general*/
 .easyform {
-	padding-left: 20px;
-	padding-right: 10px;
-
-	background: no-repeat;
-	background-position: left;
+    padding-left: 20px;
+    padding-right: 10px;
+    background: no-repeat;
+    background-position: left;
 }
 .easyhide {
-	display: none;
+    display: none;
 }
 fieldset.easyAdapt {
-	margin: 0px !important;
+    margin: 0px !important;
 }
 fieldset.easyAdapt .fcontainer {
-	padding: 0px !important;
+    padding: 0px !important;
 }
 .mform #fgroup_id_buttonar.easyShow.easyon {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 /*boost adpat*/
 .easyform.boost {
-	padding-left: 20px;
-	padding-right: 10px;
-	background: url([[pix:t/collapsed]]) 2px center no-repeat;
-} 
+    padding-left: 20px;
+    padding-right: 10px;
+    background: url([[pix:t/collapsed]]) 2px center no-repeat;
+}
 .easyform.collapsed {
-	background-image: url([[pix:t/expanded]]);
+    background-image: url([[pix:t/expanded]]);
 }
 
 /*mebis adapt*/
 .easyform.mebis {
-	background-image: url([[pix:t/collapsed]]);
-} 
+    background-image: url([[pix:t/collapsed]]);
+}
 .easyform.collapsed {
-	background-image: url([[pix:t/expanded]]);
+    background-image: url([[pix:t/expanded]]);
 }
 
 /*clean apdat*/
 .easyform {
-	padding-left: 20px;
-	padding-right: 10px;
-	background: url([[pix:t/collapsed]]) 2px center no-repeat;
-} 
+    padding-left: 20px;
+    padding-right: 10px;
+    background: url([[pix:t/collapsed]]) 2px center no-repeat;
+}
 .easyform.collapsed {
-	background-image: url([[pix:t/expanded]]);
+    background-image: url([[pix:t/expanded]]);
 }

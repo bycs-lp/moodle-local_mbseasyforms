@@ -40,21 +40,21 @@ use external_value;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class external extends external_api {
-    
+
     /**
      * Get and set the users preference for use easyforms
-     * 
+     *
      * @param int $status Preference for use easyforms
      * @return int 1 = use easyforms
      */
     public static function use_pref($status) {
         $context = context_system::instance();
-        self::validate_context($context);        
+        self::validate_context($context);
         self::validate_parameters(self::use_pref_parameters(), array('status' => $status));
-        
+
         return mbseasyforms::set_use_pref($status);
     }
-    
+
     /**
      * Returns description of show_pref parameters
      * @return external_function_parameters
@@ -64,7 +64,7 @@ class external extends external_api {
             array('status' => new external_value(PARAM_INT, 'Preference for use easyforms', VALUE_REQUIRED))
         );
     }
-    
+
     /**
      * Returns description of show_pref result value
      * @return external_description

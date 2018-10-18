@@ -24,23 +24,27 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Before footer hook loads easyforms config and javascript.
+ * @return void
+ */
 function local_mbseasyforms_before_footer() {
-        global $PAGE;
+    global $PAGE;
 
-        //get current theme
-        $theme = $PAGE->theme->name;
+    // Get current theme.
+    $theme = $PAGE->theme->name;
 
-        //read data from config and lang
-        $config = get_config('local_mbseasyforms', 'easyformsconfig');
-        $show_all = get_string('showall', 'local_mbseasyforms');
-        $show_less = get_string('showless', 'local_mbseasyforms');
-        $use_mbseasyforms = get_user_preferences('local_mbseasyforms_use', 1);
+    // Read data from config and lang.
+    $config = get_config('local_mbseasyforms', 'easyformsconfig');
+    $showall = get_string('showall', 'local_mbseasyforms');
+    $showless = get_string('showless', 'local_mbseasyforms');
+    $usembseasyforms = get_user_preferences('local_mbseasyforms_use', 1);
 
-        //param needs to be in array format
-        $params = array($theme .'#!#'. $show_all .'#!#'. $show_less .'#!#'. $use_mbseasyforms);
+    // Param needs to be in array format.
+    $params = array($theme . '#!#' . $showall . '#!#' . $showless . '#!#' . $usembseasyforms);
 
-        //pass them to js and initialize
-        //config too large -> pass before as object
-        $PAGE->requires->data_for_js('easyconf', $config);
-        $PAGE->requires->js_call_amd('local_mbseasyforms/mbseasyforms', 'init', $params);
+    // Pass them to js and initialize.
+    // Config too large -> pass before as object.
+    $PAGE->requires->data_for_js('easyconf', $config);
+    $PAGE->requires->js_call_amd('local_mbseasyforms/mbseasyforms', 'init', $params);
 }

@@ -21,18 +21,18 @@
  * @copyright  2017 Franziska Hübler <franziska.huebler@isb.bayern.de>, Tobias Garske, ISB Bayern
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- 
- defined('MOODLE_INTERNAL') || die;
 
- if ($hassiteconfig) {
+defined('MOODLE_INTERNAL') || die;
+
+if ($hassiteconfig) {
 
     $settings = new admin_settingpage('local_mbseasyforms',
-                    get_string('pluginname', 'local_mbseasyforms'));
+        get_string('pluginname', 'local_mbseasyforms'));
 
     $ADMIN->add('localplugins', $settings);
-    
+
     $settings->add(new admin_setting_configtextarea('local_mbseasyforms/easyformsconfig',
-            get_string('easyformsconfig', 'local_mbseasyforms'),
-            get_string('easyformsconfig_expl', 'local_mbseasyforms'),
-			''));
- }
+        get_string('easyformsconfig', 'local_mbseasyforms'),
+        get_string('easyformsconfig_expl', 'local_mbseasyforms'),
+        ''));
+}
