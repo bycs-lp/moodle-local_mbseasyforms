@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Local easyforms plugin.
+ * Upgrade library for easyforms plugin.
  *
  * @package     local_mbseasyforms
  * @copyright   2018 Tobias Garske, ISB
@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die;
 
 /**
  * Set easyforms config on Upgrade.
- * 
+ *
  * @param string $oldversion oldversion
  * @copyright 2018 Tobias Garske, ISB
  */

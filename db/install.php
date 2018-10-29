@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Code for the profile picture selector
+ * Code for installation of local_mbseasyforms.
  *
  * @package   local_mbseasyforms
  * @copyright 2017 Tobias Garske, ISB
