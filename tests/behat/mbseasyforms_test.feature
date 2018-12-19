@@ -1,9 +1,9 @@
 @javascript @mbseasyforms
 
-Note that this test is currently NOT running.
-After making the "Kurs erstellen" feature available again, we must check again
-whether this test works:
-See: http://pm.mebis.alp.dillingen.de/?controller=TaskViewController&action=show&task_id=3196&project_id=2
+#Note that this test is currently NOT running.
+#After making the "Kurs erstellen" feature available again, we must check again
+#whether this test works:
+#See: http://pm.mebis.alp.dillingen.de/?controller=TaskViewController&action=show&task_id=3196&project_id=2
 
 Feature: Shortened create course menu
   As User it is nicer not to be blown away by options
