@@ -467,6 +467,12 @@ class mbseasyforms {
           {
             "_comment": "Eportfolio Einstellungen",
             "default_disabled": true,
+            "elements": ["fitem_id_theme", "fitem_id_transition"]
+          },
+          "page-local-eportfolio-references":
+          {
+            "_comment": "Eportfolio Einstellungen",
+            "default_disabled": true,
             "elements": []
           }
         }';
