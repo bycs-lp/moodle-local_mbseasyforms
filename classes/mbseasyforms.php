@@ -65,7 +65,7 @@ class mbseasyforms {
             {
             "_comment": "Kurs erstellen",
             "default_disabled": false,
-            "elements": ["fitem_id_category", "fitem_id_format", "fitem_id_numsections", "fitem_id_activitytype", "fitem_id_numdiscussions"]
+            "elements": ["fitem_id_category", "fitem_id_format", "fitem_id_numsections", "fitem_id_activitytype", "fitem_id_numdiscussions", "fitem_id_newsitems"]
           },
           "page-course-editsection":
             {

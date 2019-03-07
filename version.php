@@ -23,6 +23,6 @@
  */
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version  = 2019012400;
+$plugin->version  = 2019030700;
 $plugin->requires = 2017051500;
 $plugin->component = 'local_mbseasyforms';

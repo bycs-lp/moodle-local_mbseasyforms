@@ -32,7 +32,7 @@ defined('MOODLE_INTERNAL') || die;
  */
 function xmldb_local_mbseasyforms_upgrade($oldversion) {
 
-    $newversion = 2019012400;
+    $newversion = 2019030700;
     if ($oldversion < $newversion) {
 
         // Set new config.
