@@ -474,7 +474,13 @@ class mbseasyforms {
             "_comment": "Eportfolio Einstellungen",
             "default_disabled": true,
             "elements": []
-          }
+          },
+          "page-mod-mootyper-mod":
+          {
+            "_comment": "Tastschreiben Einstellungen",
+            "default_disabled": false,
+            "elements": ["fitem_id_introeditor", "fitem_id_completion", "fitem_id_completionview"]
+          }          
         }';
         return $config;
     }
