@@ -227,7 +227,7 @@ class mbseasyforms {
           {
             "_comment": "Test",
             "default_disabled": false,
-            "elements": [ "fitem_id_introeditor", "fitem_id_showdescription", "fitem_id_completion", "fitem_id_gradeboundarystatic1", "fitem_id_feedbacktext_0", "fitem_id_feedbackboundaries_0", "fitem_id_feedbacktext_1", "fitem_id_feedbackboundaries_1", "fitem_id_feedbacktext_2", "fitem_id_feedbackboundaries_2", "fitem_id_feedbacktext_3", "fitem_id_feedbackboundaries_3", "fitem_id_feedbacktext_4",  "fitem_id_gradeboundarystatic2", "fitem_id_completionview", "fitem_id_completionusegrade", "fgroup_id_completionpassgroup", "fitem_id_allowofflineattempts"]
+            "elements": [ "fitem_id_introeditor", "fitem_id_showdescription", "fitem_id_completion", "fitem_id_gradeboundarystatic1", "fitem_id_feedbacktext_0", "fitem_id_feedbackboundaries_0", "fitem_id_feedbacktext_1", "fitem_id_feedbackboundaries_1", "fitem_id_feedbacktext_2", "fitem_id_feedbackboundaries_2", "fitem_id_feedbacktext_3", "fitem_id_feedbackboundaries_3", "fitem_id_feedbacktext_4", "fitem_id_feedbackboundaries_4", "fitem_id_feedbacktext_5", "fitem_id_feedbackboundaries_5", "fitem_id_feedbacktext_6", "fitem_id_feedbackboundaries_6", "fitem_id_feedbacktext_7", "fitem_id_feedbackboundaries_7", "fitem_id_feedbacktext_8", "fitem_id_feedbackboundaries_8", "fitem_id_feedbacktext_9", "fitem_id_feedbackboundaries_9", "fitem_id_feedbacktext_10", "fitem_id_feedbackboundaries_10", "fitem_id_gradeboundarystatic2", "fitem_id_completionview", "fitem_id_completionusegrade", "fgroup_id_completionpassgroup", "fitem_id_allowofflineattempts"]
           },
           "page-mod-quiz-report":
           {
