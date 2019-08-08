@@ -88,7 +88,7 @@ class mbseasyforms {
           "page-course-reset":
           {
             "_comment": "Kurs zurücksetzen",
-            "default_disabled": true,
+            "default_disabled": false,
             "elements": []
           },
           "page-mod-choice-mod":
