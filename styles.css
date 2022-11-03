@@ -1,14 +1,13 @@
-/*general*/
-.easyform {
-    padding-left: 20px;
-    padding-right: 10px;
-    background: no-repeat;
-    background-position: left;
+/*hide elements*/
+div.easyhide {
+    display: none !important;
 }
-.easyhide {
-    display: none;
-}
+/*Empty space for hidden elements*/
 fieldset.easyAdapt {
+    margin: 0px !important;
+    border-bottom: 0px !important;
+}
+fieldset.easyAdapt > div.mb-2 {
     margin: 0px !important;
 }
 fieldset.easyAdapt .fcontainer {
@@ -17,31 +16,18 @@ fieldset.easyAdapt .fcontainer {
 .mform #fgroup_id_buttonar.easyShow.easyon {
     margin-top: 20px;
 }
-
-/*boost adpat*/
-.easyform.boost {
-    padding-left: 20px;
-    padding-right: 10px;
-    background: url([[pix:t/collapsed]]) 2px center no-repeat;
+/*hide on load*/
+form.mform fieldset {
+    visibility: hidden;
 }
-.easyform.collapsed {
-    background-image: url([[pix:t/expanded]]);
+/*show modals*/
+.modal form.mform fieldset {
+    visibility: visible;
 }
-
-/*mebis adapt*/
-.easyform.mebis {
-    background-image: url([[pix:t/collapsed]]);
+form.mform.show fieldset {
+    visibility: visible;
 }
-.easyform.collapsed {
-    background-image: url([[pix:t/expanded]]);
-}
-
-/*clean apdat*/
-.easyform {
-    padding-left: 20px;
-    padding-right: 10px;
-    background: url([[pix:t/collapsed]]) 2px center no-repeat;
-}
-.easyform.collapsed {
-    background-image: url([[pix:t/expanded]]);
+/*hide help of hidden fieldset*/
+fieldset.easyAdapt > div > a.btn-link {
+    display: none;
 }

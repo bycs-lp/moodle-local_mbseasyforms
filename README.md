@@ -6,7 +6,7 @@ It shows only options that are required or chosen by the admin in the plugin set
 Also it provides a link to switch - like and next to the collapse option - to get to the default view and a User can decide which view to start with in the Profile settings.
 
 ## Supported Themes
-Boost, Bootstrap and Clean.
+Boost.
 
 ## Installation
 1. Unpack the plugin into /local/easyforms within your Moodle install.
