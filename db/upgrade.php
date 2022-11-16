@@ -22,8 +22,6 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
-
 /**
  * Set easyforms config on Upgrade.
  *
@@ -31,6 +29,7 @@ defined('MOODLE_INTERNAL') || die;
  * @copyright 2018 Tobias Garske, ISB
  */
 function xmldb_local_mbseasyforms_upgrade($oldversion) {
+    global $DB;
 
     $newversion = 2022111600;
     if ($oldversion < $newversion) {
@@ -40,6 +39,16 @@ function xmldb_local_mbseasyforms_upgrade($oldversion) {
         $value = \local_mbseasyforms\mbseasyforms::get_admin_easyformsconfig();
 
         set_config($name, $value, 'local_mbseasyforms');
+
+        // Mbseasyforms savepoint reached.
+        upgrade_plugin_savepoint(true, $newversion, 'local', 'mbseasyforms');
+    }
+
+    $newversion = 2023011600;
+    if ($oldversion < $newversion) {
+
+        // Set custom profile field for easyforms.
+        \local_mbseasyforms\mbseasyforms::set_custom_profile_field();
 
         // Mbseasyforms savepoint reached.
         upgrade_plugin_savepoint(true, $newversion, 'local', 'mbseasyforms');

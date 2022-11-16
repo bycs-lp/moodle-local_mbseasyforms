@@ -22,14 +22,12 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
-
 /**
- * Set easyforms config on install.
+ * Create a custom user profile field to switch use of easyforms.
  */
 function xmldb_local_mbseasyforms_install() {
-    // Set default config.
-    $name = "easyformsconfig";
-    $value = \local_mbseasyforms\mbseasyforms::get_admin_easyformsconfig();
-    set_config($name, $value, 'local_mbseasyforms');
+
+    // Set custom profile field for easyforms.
+    \local_mbseasyforms\mbseasyforms::set_custom_profile_field();
+
 }

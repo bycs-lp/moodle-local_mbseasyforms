@@ -59,8 +59,7 @@ const mbseasyforms = (params) => {
         var user_setting = tmp[3];
         var easyconf = tmp[4];
         var useadminconf = tmp[5];
-        console.log(easyconf);
-        if (!useadminconf) {
+        if (useadminconf == 0) {
             easyconf = gethardcodedconfig();
         }
         try {
@@ -626,4 +625,4 @@ const gethardcodedconfig = () => {
         }
       }`;
     return config;
-}
+};

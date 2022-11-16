@@ -22,8 +22,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Before footer hook loads easyforms config and javascript.
  * @return void
@@ -37,7 +35,12 @@ function local_mbseasyforms_before_footer() {
     // Read data from config and lang.
     $showall = get_string('showall', 'local_mbseasyforms');
     $showless = get_string('showless', 'local_mbseasyforms');
-    $usembseasyforms = $USER->profile['profile_mbseasyforms_use'];
+    $usembseasyforms = $USER->profile['mbseasyforms'];
+    if (isset($USER->profile['mbseasyforms'])) {
+        $usembseasyforms = $USER->profile['mbseasyforms'];
+    } else {
+        $usembseasyforms = 1;
+    }
     $useconfig = get_config('local_mbseasyforms', 'useeasyformsconfig');
     // Conditional loading for adminconfig, since it triggers a warning because its too big.
     $config = '';

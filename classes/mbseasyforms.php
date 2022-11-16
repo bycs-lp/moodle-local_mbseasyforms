@@ -23,7 +23,6 @@
  */
 
 namespace local_mbseasyforms;
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Functions for local plugin mbseasyforms.
@@ -32,28 +31,6 @@ defined('MOODLE_INTERNAL') || die();
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class mbseasyforms {
-
-    /**
-     * Get the user preference for use easyforms.
-     * @return int 1 = use easyforms
-     */
-    public static function get_use_pref() {
-        $userpref = get_user_preferences('local_mbseasyforms_use', 1);
-        return $userpref;
-    }
-
-    /**
-     * Description
-     * @param int $status user preference
-     * @return int 1 = use easyforms
-     */
-    public static function set_use_pref($status) {
-        $userpref = get_user_preferences('local_mbseasyforms_use', 1);
-        if ($status != $userpref) {
-            set_user_preference('local_mbseasyforms_use', $status);
-        }
-        return $status;
-    }
 
     /**
      * Provides the admin settings easyformsconfig on update or install.
@@ -480,8 +457,42 @@ class mbseasyforms {
             "_comment": "Tastschreiben Einstellungen",
             "default_disabled": false,
             "elements": ["fitem_id_introeditor", "fitem_id_completion", "fitem_id_completionview"]
-          }          
+          }
         }';
         return $config;
+    }
+
+    public static function set_custom_profile_field(): void {
+        global $DB;
+
+        // Set custom profile field for easyforms.
+        $profilefield = [
+            'shortname' => 'mbseasyforms',
+            'name' => 'mebis Easyforms',
+            'datatype' => 'checkbox',
+            'description' => '<p>Verkürzte Formulare standardmäßig aktiviert.<br></p>',
+            'descriptionformat' => 1,
+            'categoryid' => 1,
+            'required' => 0,
+            'locked' => 0,
+            'visible' => 2,
+            'forceunique' => 0,
+            'signup' => 0,
+            'defaultdata' => 1,
+            'defaultdataformat' => 0,
+            'param1' => '',
+            'param2' => '',
+            'param3' => '',
+            'param4' => '',
+            'param5' => ''
+        ];
+
+        // Check for standard category.
+        if ($DB->get_field('user_info_category', '*', ['id' => 1])) {
+            $DB->insert_record('user_info_field', $profilefield);
+        } else {
+            mtrace('Creation of custom profile field failed, because of missing category with ID 1');
+        }
+
     }
 }
