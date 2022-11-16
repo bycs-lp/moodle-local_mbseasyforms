@@ -35,13 +35,18 @@ function local_mbseasyforms_before_footer() {
     $theme = $PAGE->theme->name;
 
     // Read data from config and lang.
-    $config = get_config('local_mbseasyforms', 'easyformsconfig');
     $showall = get_string('showall', 'local_mbseasyforms');
     $showless = get_string('showless', 'local_mbseasyforms');
     $usembseasyforms = $USER->profile['profile_mbseasyforms_use'];
+    $useconfig = get_config('local_mbseasyforms', 'useeasyformsconfig');
+    // Conditional loading for adminconfig, since it triggers a warning because its too big.
+    $config = '';
+    if ($useconfig) {
+        $config = get_config('local_mbseasyforms', 'easyformsconfig');
+    }
 
     // Param needs to be in array format.
-    $params = array($theme . '#!#' . $showall . '#!#' . $showless . '#!#' . $usembseasyforms . '#!#' . $config);
+    $params = array($theme . '#!#' . $showall . '#!#' . $showless . '#!#' . $usembseasyforms . '#!#' . $config . '#!#' . $useconfig);
 
     // Pass them to js and initialize.
     $PAGE->requires->js_call_amd('local_mbseasyforms/mbseasyforms', 'init', $params);

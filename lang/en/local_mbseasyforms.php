@@ -44,5 +44,6 @@ Example:<br>
 }';
 $string['pluginname'] = 'mebis Easy Forms';
 $string['useeasyforms'] = 'Use shortened forms';
+$string['useeasyformsconfig'] = 'Use adminconfiguration (Otherwise hardcoded configuration is used)';
 $string['showall'] = 'All Settings';
 $string['showless'] = 'Less Settings';

@@ -31,8 +31,13 @@ if ($hassiteconfig) {
 
     $ADMIN->add('localplugins', $settings);
 
-    $settings->add(new admin_setting_configtextarea('local_mbseasyforms/easyformsconfig',
-        get_string('easyformsconfig', 'local_mbseasyforms'),
-        get_string('easyformsconfig_expl', 'local_mbseasyforms'),
+    $settings->add(new admin_setting_configcheckbox('local_mbseasyforms/useeasyformsconfig',
+        get_string('useeasyformsconfig', 'local_mbseasyforms'),
+        '',
         ''));
+
+    $settings->add(new admin_setting_configtextarea('local_mbseasyforms/easyformsconfig',
+    get_string('easyformsconfig', 'local_mbseasyforms'),
+    get_string('easyformsconfig_expl', 'local_mbseasyforms'),
+    ''));
 }
