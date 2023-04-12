@@ -48,8 +48,12 @@ const mbseasyforms = (params) => {
         $('form.mform').addClass('show');
     }
 
+    var body_id = $('body').attr('id');
+    // exceptions to .collapsible-actions
+    var exceptions = ['page-enrol-editinstance'];
+
     // Check if there is a form with collapsible-actions on the page.
-    if ($('form.mform').length && $('.collapsible-actions').length) {
+    if ($('form.mform').length && ($('.collapsible-actions').length || exceptions.includes(body_id))) {
         /*variables*/
         /**********/
         var tmp = params.split('#!#');
@@ -68,7 +72,6 @@ const mbseasyforms = (params) => {
             console.log("EasyForm-Plugin: Error in JSON-Config: " + e);
             var config = JSON.parse('{}');
         }
-        var body_id = $('body').attr('id');
         var default_disabled = false;
         var has_config = false;
         var id_arr = [];
@@ -125,6 +128,10 @@ const mbseasyforms = (params) => {
             $('#id_category_1container').removeClass('collapse');
             $('#id_category_1container').children().removeClass('easyhide mbstoggle');
         }
+        // Show invalid options.
+        $('.invalid-feedback[style*="display: block"]').each(function() {
+            $(this).parents('.fitem').removeClass('easyhide mbstoggle');
+        });
         // Add class to remove used space of hidden elements.
         $('fieldset.collapsible').each(function() {
             $(this).addClass('easyAdapt toggleAdapt');
@@ -133,11 +140,11 @@ const mbseasyforms = (params) => {
         $('#fgroup_id_buttonar').addClass("easyon");
         /*Create toggle link*/
         /*******************/
-        // Create toggle link.
-        // Is there a collapse all option - then create link inside its div.
         if ($('.collapsible-actions').length) {
             $('.collapseexpand').first().addClass('hidden');
             $('.collapsible-actions').append("<a id='easyform_click' href='#' role='button' class='easyform " + theme + " btn btn-link p-1'><span>" + showallstring + "</span></a>");
+        } else {
+            $('.mform').prepend("<div class='row'><div class='col-md-9 text-right'><a id='easyform_click' href='#' role='button' class='easyform " + theme + " btn btn-link p-1'><span>" + showallstring + "</span></a></div></div>");
         }
         // If easyform disabled through conf or user setting.
         if (default_disabled || user_setting === "0") {
@@ -628,6 +635,12 @@ const gethardcodedconfig = () => {
             "_comment": "Tastschreiben Einstellungen",
             "default_disabled": false,
             "elements": ["fitem_id_introeditor", "fitem_id_completion", "fitem_id_completionview"]
+        },
+        "page-enrol-editinstance":
+        {
+            "_comment": "Einsschreibemethoden globale Einstellungen",
+            "default_disabled": false,
+            "elements": ["fitem_id_status", "fitem_id_roleid", "fitem_id_password", "fitem_id_customint1"]
         }
       }`;
     return config;
