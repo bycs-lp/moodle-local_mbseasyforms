@@ -119,6 +119,12 @@ const mbseasyforms = (params) => {
                 $(this).addClass('easyShow');
             }
         });
+        // Show easyforms option in user profile.
+        if (body_id == 'page-user-editadvanced') {
+            $('#id_category_1container').parents('.fcontainer').removeClass('collapse');
+            $('#id_category_1container').removeClass('collapse');
+            $('#id_category_1container').children().removeClass('easyhide mbstoggle');
+        }
         // Add class to remove used space of hidden elements.
         $('fieldset.collapsible').each(function() {
             $(this).addClass('easyAdapt toggleAdapt');
@@ -219,7 +225,7 @@ const gethardcodedconfig = () => {
         {
             "_comment": "Nutzerprofil",
             "default_disabled": false,
-            "elements": ["fitem_id_username", "fitem_id_passwordpolicyinfo", "fitem_id_newpassword", "fitem_id_email"]
+            "elements": ["fitem_id_username", "fitem_id_passwordpolicyinfo", "fitem_id_email"]
         },
         "page-course-completion":
         {
