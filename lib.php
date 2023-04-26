@@ -35,7 +35,6 @@ function local_mbseasyforms_before_footer() {
     // Read data from config and lang.
     $showall = get_string('showall', 'local_mbseasyforms');
     $showless = get_string('showless', 'local_mbseasyforms');
-    $usembseasyforms = $USER->profile['mbseasyforms'];
     if (isset($USER->profile['mbseasyforms'])) {
         $usembseasyforms = $USER->profile['mbseasyforms'];
     } else {
