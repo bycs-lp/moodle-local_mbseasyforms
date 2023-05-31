@@ -468,9 +468,9 @@ class mbseasyforms {
         // Set custom profile field for easyforms.
         $profilefield = [
             'shortname' => 'mbseasyforms',
-            'name' => 'mebis Easyforms',
+            'name' => 'vereinfachte Formulare verwenden',
             'datatype' => 'checkbox',
-            'description' => '<p>Verkürzte Formulare standardmäßig aktiviert.<br></p>',
+            'description' => '<p>Vereinfachte Formulare standardmäßig aktiviert.<br></p>',
             'descriptionformat' => 1,
             'categoryid' => 1,
             'required' => 0,

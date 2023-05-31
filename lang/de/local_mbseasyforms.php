@@ -42,7 +42,7 @@ Beginnend mit der body#id können Elemente über die fitem_id hinzugeschaltet we
      &nbsp;&nbsp;}<br>
 }';
 $string['pluginname'] = 'mebis Easy Forms';
-$string['useeasyforms'] = 'Verkürzte Formulare verwenden';
+$string['useeasyforms'] = 'Vereinfachte Formulare verwenden';
 $string['useeasyformsconfig'] = 'Einbinden der Adminkonfiguration <br> (Ansonsten wird die hartkodierte Konfiguration verwendet)';
 $string['showall'] = 'Alle Einstellungen';
 $string['showless'] = 'Weniger Einstellungen';
