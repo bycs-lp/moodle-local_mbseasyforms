@@ -91,11 +91,11 @@ const mbseasyforms = (params) => {
         /*hide things*/
         /************/
         // Hide and mark header.
-        $('.ftoggler').each(function() {
+        $('.ftoggler').each(function () {
             $(this).addClass(css_hide + ' mbstoggle');
         });
         // Hide Input rows.
-        $('.fitem').each(function() {
+        $('.fitem').each(function () {
             // If not required or submit buttons.
             let isSubmit = ($(this).attr('id') == 'fgroup_id_buttonar' || $(this).parents('#fgroup_id_buttonar').length);
             if ($(this).find('.fa-exclamation-circle').length !== 1 && !isSubmit) {
@@ -129,11 +129,11 @@ const mbseasyforms = (params) => {
             $('#id_category_1container').children().removeClass('easyhide mbstoggle');
         }
         // Show invalid options.
-        $('.invalid-feedback[style*="display: block"]').each(function() {
+        $('.invalid-feedback[style*="display: block"]').each(function () {
             $(this).parents('.fitem').removeClass('easyhide mbstoggle');
         });
         // Add class to remove used space of hidden elements.
-        $('fieldset.collapsible').each(function() {
+        $('fieldset.collapsible').each(function () {
             $(this).addClass('easyAdapt toggleAdapt');
         });
         // Adapt action buttons.
@@ -151,11 +151,11 @@ const mbseasyforms = (params) => {
             $('#easyform_click').addClass('collapsed');
             $('#easyform_click').html(showlessstring);
             // Show elements.
-            $('.mbstoggle').each(function() {
+            $('.mbstoggle').each(function () {
                 $(this).removeClass(css_hide);
             });
             // Adapt css.
-            $('.toggleAdapt').each(function() {
+            $('.toggleAdapt').each(function () {
                 $(this).removeClass("easyAdapt");
             });
             $('#fgroup_id_buttonar').removeClass("easyon");
@@ -163,13 +163,13 @@ const mbseasyforms = (params) => {
             $('.collapseexpand').first().removeClass('hidden');
         }
         // Easyform switch.
-        $("#easyform_click").click(function() {
+        $("#easyform_click").click(function () {
             // Hide elements.
-            $('.mbstoggle').each(function() {
+            $('.mbstoggle').each(function () {
                 $(this).toggleClass(css_hide);
             });
             // Adapt css.
-            $('.toggleAdapt').each(function() {
+            $('.toggleAdapt').each(function () {
                 $(this).toggleClass("easyAdapt");
             });
             if ($('.' + css_hide).length) {
@@ -184,29 +184,29 @@ const mbseasyforms = (params) => {
             // Adapt actionbuttons.
             $('#fgroup_id_buttonar').toggleClass("easyon");
             // Fix if collapse all was clicked before showall, all would be hidden.
-            $('.easyShow').each(function() {
+            $('.easyShow').each(function () {
                 $(this).parents('.collapseable').removeClass("collapse");
             });
             // Close .collapseable child that should be collapsed when showall is clicked.
-            $('.collapsible.collapsed .collapseable').each(function() {
-                if(!$(this).hasClass('collapse')) {
+            $('.collapsible.collapsed .collapseable').each(function () {
+                if (!$(this).hasClass('collapse')) {
                     $(this).addClass('collapse');
                 }
             });
             // Open .collapseable when showless is clicked.
-            $('.collapsible.easyAdapt .collapseable').each(function() {
-                if($(this).hasClass('collapse')) {
+            $('.collapsible.easyAdapt .collapseable').each(function () {
+                if ($(this).hasClass('collapse')) {
                     $(this).removeClass('collapse');
                 }
             });
         });
         // Add Collapse all compatibility.
-        $( document ).ready(function() {
-            $('.collapseexpand').click(function() {
-                $('.mbstoggle').each(function() {
+        $(document).ready(function () {
+            $('.collapseexpand').click(function () {
+                $('.mbstoggle').each(function () {
                     $(this).removeClass(css_hide);
                 });
-                $('.toggleAdapt').each(function() {
+                $('.toggleAdapt').each(function () {
                     $(this).removeClass("easyAdapt");
                 });
             });
@@ -641,6 +641,12 @@ const gethardcodedconfig = () => {
             "_comment": "Einsschreibemethoden globale Einstellungen",
             "default_disabled": false,
             "elements": ["fitem_id_status", "fitem_id_roleid", "fitem_id_password", "fitem_id_customint1"]
+        },
+        "page-mod-learningmap-mod":
+        {
+            "_comment": "Lernlandkarten Einstellungen",
+            "default_disabled": false,
+            "elements": ["mod_learningmap_editor"]
         }
       }`;
     return config;
