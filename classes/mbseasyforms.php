@@ -288,7 +288,7 @@ class mbseasyforms {
           {
             "_comment": "H5P",
             "default_disabled": false,
-            "elements": [ "fitem_id_name", "fitem_id_introeditor", "fitem_id_showdescription", "fgroup_id_h5pactiongroup", "fitem_id_h5pfile", "fitem_id_showexpanded", "fitem_id_studentedit", "fitem_id_completion", "fitem_id_completionview", "fitem_id_completionusegrade"]
+            "elements": [ "fitem_id_name", "fitem_id_introeditor", "fitem_id_showdescription", "fgroup_id_h5peditor", "fgroup_id_h5pactiongroup", "fitem_id_h5pfile", "fitem_id_showexpanded", "fitem_id_studentedit", "fitem_id_completion", "fitem_id_completionview", "fitem_id_completionusegrade"]
           },
           "page-blocks-mbstpl-dupcrs":
           {
