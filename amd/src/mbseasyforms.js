@@ -663,6 +663,36 @@ const gethardcodedconfig = () => {
           "_comment": "Unilabel Content bearbeitem",
           "default_disabled": true,
           "elements": ["fitem_id_introeditor"]
+        },
+        "page-blocks-mbsnewcourse-restore":
+        {
+            "_comment": "Kurswiederherstellung",
+            "default_disabled": true,
+            "elements": ["fitem_id_category", "fitem_id_backupfile", "fitem_id_errornocoursefile"]
+        },
+        "page-admin-auth-oidc-manageapplication":
+        {
+            "_comment": "Adminbereich Open IDC",
+            "default_disabled": true,
+            "elements": []
+        },
+        "page-admin-auth-oidc-manageapplication":
+        {
+            "_comment": "Adminbereich Open IDC",
+            "default_disabled": true,
+            "elements": []
+        },
+        "page-mod-kanban-mod":
+        {
+            "_comment": "Kanban Board Einstellungen",
+            "default_disabled": true,
+            "elements": ["fitem_id_name", "fitem_id_history"]
+        },
+        "page-mod-board-mod":
+        {
+            "_comment": "Board Einstellungen",
+            "default_disabled": true,
+            "elements": ["fitem_id_name", "fitem_id_background_color", "fitem_id_background_color", "id_background_image_fieldset", "fitem_id_addrating", "fitem_id_sortby"]
         }
       }`;
     return config;
