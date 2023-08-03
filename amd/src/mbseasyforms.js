@@ -103,10 +103,6 @@ const mbseasyforms = (params) => {
                 if (has_config) {
                     var hide = true;
                     for (var i = 0, len = id_arr.length; i < len; i++) {
-                        console.log("###");
-                        if ("fitem_id_category" == '#' + id_arr[i]) {
-                            console.log($(this));
-                        }
                         if ($(this).is('#' + id_arr[i])) {
                             hide = false;
                             // Make sure it is visible.
@@ -679,6 +675,24 @@ const gethardcodedconfig = () => {
             "_comment": "Adminbereich Open IDC",
             "default_disabled": true,
             "elements": []
+        },
+        "page-admin-auth-oidc-manageapplication":
+        {
+            "_comment": "Adminbereich Open IDC",
+            "default_disabled": true,
+            "elements": []
+        },
+        "page-mod-kanban-mod":
+        {
+            "_comment": "Kanban Board Einstellungen",
+            "default_disabled": true,
+            "elements": ["fitem_id_name", "fitem_id_history"]
+        },
+        "page-mod-board-mod":
+        {
+            "_comment": "Board Einstellungen",
+            "default_disabled": true,
+            "elements": ["fitem_id_name", "fitem_id_background_color", "fitem_id_background_color", "id_background_image_fieldset", "fitem_id_addrating", "fitem_id_sortby"]
         }
       }`;
     return config;

@@ -487,6 +487,18 @@ class mbseasyforms {
               "_comment": "Adminbereich Open IDC",
               "default_disabled": true,
               "elements": []
+          },
+          "page-mod-kanban-mod":
+          {
+              "_comment": "Kanban Board Einstellungen",
+              "default_disabled": true,
+              "elements": ["fitem_id_name", "fitem_id_history"]
+          },
+          "page-mod-board-mod":
+          {
+              "_comment": "Board Einstellungen",
+              "default_disabled": true,
+              "elements": ["fitem_id_name", "fitem_id_background_color", "fitem_id_background_color", "id_background_image_fieldset", "fitem_id_addrating", "fitem_id_sortby"]
           }
         }';
         return $config;
