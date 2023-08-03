@@ -103,6 +103,10 @@ const mbseasyforms = (params) => {
                 if (has_config) {
                     var hide = true;
                     for (var i = 0, len = id_arr.length; i < len; i++) {
+                        console.log("###");
+                        if ("fitem_id_category" == '#' + id_arr[i]) {
+                            console.log($(this));
+                        }
                         if ($(this).is('#' + id_arr[i])) {
                             hide = false;
                             // Make sure it is visible.
@@ -663,6 +667,12 @@ const gethardcodedconfig = () => {
           "_comment": "Unilabel Content bearbeitem",
           "default_disabled": true,
           "elements": ["fitem_id_introeditor"]
+        },
+        "page-blocks-mbsnewcourse-restore":
+        {
+            "_comment": "Kurswiederherstellung",
+            "default_disabled": true,
+            "elements": ["fitem_id_category", "fitem_id_backupfile", "fitem_id_errornocoursefile"]
         }
       }`;
     return config;

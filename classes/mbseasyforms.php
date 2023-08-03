@@ -476,6 +476,12 @@ class mbseasyforms {
             "default_disabled": true,
             "elements": ["fitem_id_introeditor"]
           },
+          "page-blocks-mbsnewcourse-restore":
+          {
+              "_comment": "Kurswiederherstellung",
+              "default_disabled": true,
+              "elements": ["fitem_id_category", "fitem_id_backupfile", "fitem_id_errornocoursefile"]
+          }
         }';
         return $config;
     }
