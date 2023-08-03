@@ -481,6 +481,12 @@ class mbseasyforms {
               "_comment": "Kurswiederherstellung",
               "default_disabled": true,
               "elements": ["fitem_id_category", "fitem_id_backupfile", "fitem_id_errornocoursefile"]
+          },
+          "page-admin-auth-oidc-manageapplication":
+          {
+              "_comment": "Adminbereich Open IDC",
+              "default_disabled": true,
+              "elements": []
           }
         }';
         return $config;
