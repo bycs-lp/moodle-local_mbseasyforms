@@ -499,6 +499,12 @@ class mbseasyforms {
               "_comment": "Board Einstellungen",
               "default_disabled": true,
               "elements": ["fitem_id_name", "fitem_id_background_color", "fitem_id_background_color", "id_background_image_fieldset", "fitem_id_addrating", "fitem_id_sortby"]
+          },
+          "page-question-bank-importquestions-import":
+          {
+              "_comment": "Fragensammlung import",
+              "default_disabled": false,
+              "elements": ["fitem_id_submitbutton"]          
           }
         }';
         return $config;
