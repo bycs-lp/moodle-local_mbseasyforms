@@ -110,7 +110,7 @@ const mbseasyforms = (params) => {
                         // Check if element has no id, and check childelements for specified elements.
                         else if (!$(this).prop('id')) {
                             // Check for elements, that are not fitem_id_elements.
-                            if ($(this).find('#' + id_arr[i]).length) {
+                            if (id_arr[i].lastIndexOf('item_id_') === -1 && $(this).find('#' + id_arr[i]).length) {
                                 hide = false;
                             }
                         }
@@ -708,7 +708,7 @@ const gethardcodedconfig = () => {
             "_comment": "Fragensammlung import",
             "default_disabled": false,
             "elements": ["fitem_id_submitbutton"]
-        }        
+        }
       }`;
     return config;
 };
