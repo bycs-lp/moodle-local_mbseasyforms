@@ -498,7 +498,7 @@ class mbseasyforms {
           {
               "_comment": "Board Einstellungen",
               "default_disabled": true,
-              "elements": ["fitem_id_name", "fitem_id_background_color", "fitem_id_background_color", "id_background_image_fieldset", "fitem_id_addrating", "fitem_id_sortby"]
+              "elements": ["fitem_id_name", "fitem_id_background_color", "fitem_id_background_image", "id_background_image_fieldset", "fitem_id_addrating", "fitem_id_sortby", "id_hideheaders", "fitem_id_singleusermode", "id_postbyenabled", "id_userscanedit", "id_enableblanktarget", "id_embed"]
           },
           "page-question-bank-importquestions-import":
           {
