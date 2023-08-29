@@ -16,6 +16,7 @@ fieldset.easyAdapt .fcontainer {
 .mform #fgroup_id_buttonar.easyShow.easyon {
     margin-top: 20px;
 }
+
 /*hide on load*/
 form.mform fieldset {
     visibility: hidden;
@@ -23,6 +24,11 @@ form.mform fieldset {
 form.mform > .form-group {
     visibility: hidden;
 }
+/* Special restriction for mod_assign grader (MBS-7917)*/
+#page-mod-assign-grader form.mform fieldset {
+    visibility: unset;
+}
+
 /*show modals*/
 .modal form.mform fieldset {
     visibility: visible;
@@ -33,6 +39,7 @@ form.mform.show fieldset {
 form.mform.show > .form-group {
     visibility: visible;
 }
+
 /*hide help of hidden fieldset*/
 fieldset.easyAdapt > div > a.btn-link {
     display: none;
