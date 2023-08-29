@@ -20,11 +20,17 @@ fieldset.easyAdapt .fcontainer {
 form.mform fieldset {
     visibility: hidden;
 }
+form.mform > .form-group {
+    visibility: hidden;
+}
 /*show modals*/
 .modal form.mform fieldset {
     visibility: visible;
 }
 form.mform.show fieldset {
+    visibility: visible;
+}
+form.mform.show > .form-group {
     visibility: visible;
 }
 /*hide help of hidden fieldset*/
