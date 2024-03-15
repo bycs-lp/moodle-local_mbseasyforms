@@ -54,8 +54,12 @@ const mbseasyforms = async (params) => {
     // exceptions to .collapsible-actions
     var exceptions = ['page-enrol-editinstance'];
 
+    // Since Moodle 4.3 you can pass the URL parameter "showonly=..." to an edit form to only show a specific section of the form.
+    // In this case we do not want easyforms to hide anything, because the user already specified what he wants to see.
+    const isShowOnlyPage = (new URL(document.location)).searchParams.has('showonly');
+
     // Check if there is a form with collapsible-actions on the page.
-    if ($('form.mform').length && ($('.collapsible-actions').length || exceptions.includes(body_id))) {
+    if ($('form.mform').length && ($('.collapsible-actions').length || exceptions.includes(body_id)) && !isShowOnlyPage) {
         /*variables*/
         /**********/
         var tmp = params.split('#!#');
