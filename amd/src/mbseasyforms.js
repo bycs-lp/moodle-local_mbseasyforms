@@ -740,7 +740,7 @@ const gethardcodedconfig = () => {
         {
             "_comment": "Lernlandkarten Einstellungen",
             "default_disabled": false,
-            "elements": ["mod_learningmap_editor", "fitem_id_completion", "id_completionview", "fitem_id_completiontype"]
+            "elements": ["mod_learningmap_editor", "fitem_id_completion", "id_completionview", "fitem_id_completiontype", "id_showdescription", "id_backlink"]
         },
         "page-mod-unilabel-edit_content":
         {
