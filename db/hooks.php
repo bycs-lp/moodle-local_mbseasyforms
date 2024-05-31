@@ -15,14 +15,19 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version file for local_mbseasyforms
+ * Hook callbacks for local_mbseasyforms
  *
- * @package local_mbseasyforms
- * @copyright Franziska Hübler, Tobias Garske, ISB Bayern
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    local_mbseasyforms
+ * @copyright  2024 ISB Bayern
+ * @author     Thomas Ludwig <thomas.ludwig@isb.bayern.de>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version  = 2024053100;
-$plugin->requires  = 2024042200; // Support for 4.4 and above, due to Hook API.
-$plugin->component = 'local_mbseasyforms';
+$callbacks = [
+    [
+        'hook' => \core\hook\output\before_footer_html_generation::class,
+        'callback' => \local_mbseasyforms\local\hook_callbacks::class . '::before_footer_html_generation',
+    ],
+];
