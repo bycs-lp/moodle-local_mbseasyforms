@@ -41,5 +41,11 @@ function xmldb_local_mbseasyforms_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, $newversion, 'local', 'mbseasyforms');
     }
 
+    if ($oldversion < 2024082801) {
+        \local_mbseasyforms\mbseasyforms::update_custom_profile_field();
+
+        upgrade_plugin_savepoint(true, 2024082801, 'local', 'mbseasyforms');
+    }
+
     return true;
 }
