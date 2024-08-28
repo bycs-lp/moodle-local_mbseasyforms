@@ -43,6 +43,7 @@ Beginnend mit der body#id können Elemente über die fitem_id hinzugeschaltet we
      &nbsp;&nbsp;}<br>
 }';
 $string['pluginname'] = 'mebis Easy Forms';
+$string['privacy:metadata:explanationeasyformsenabled'] = 'Aktivieren oder deaktivieren Easy Forms für diesen Nutzer';
 $string['useeasyforms'] = 'Vereinfachte Formulare verwenden';
 $string['useeasyformsconfig'] = 'Einbinden der Adminkonfiguration <br> (Ansonsten wird die hartkodierte Konfiguration verwendet)';
 $string['showall'] = 'Ausführliche Eingabe';

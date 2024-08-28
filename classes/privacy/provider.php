@@ -53,7 +53,7 @@ class provider implements \core_privacy\local\metadata\provider,
      * @return collection
      */
     public static function get_metadata(collection $collection) : collection {
-        return $collection->add_plugintype_link('profilefield', [], 'privacy:metadata:explanationeasyformsenabled');
+        return $collection->add_subsystem_link('profilefield_checkbox', [], 'privacy:metadata:explanationeasyformsenabled');
     }
 
     /**

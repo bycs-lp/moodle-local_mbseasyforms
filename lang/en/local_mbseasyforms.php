@@ -44,6 +44,7 @@ Example:<br>
      &nbsp;&nbsp;}<br>
 }';
 $string['pluginname'] = 'mebis Easy Forms';
+$string['privacy:metadata:explanationeasyformsenabled'] = 'Enable or disable Easy Forms for this user';
 $string['useeasyforms'] = 'Use shortened forms';
 $string['useeasyformsconfig'] = 'Use adminconfiguration (Otherwise hardcoded configuration is used)';
 $string['showall'] = 'All Settings';
