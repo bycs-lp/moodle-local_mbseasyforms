@@ -24,6 +24,8 @@
 
 namespace local_mbseasyforms;
 
+// Needed to use constants from the profile library.
+require_once(__DIR__ . '/../../../user/profile/lib.php');
 /**
  * Functions for local plugin mbseasyforms.
  *
@@ -45,7 +47,7 @@ class mbseasyforms {
             'categoryid' => 1,
             'required' => 0,
             'locked' => 0,
-            'visible' => 2,
+            'visible' => PROFILE_VISIBLE_PRIVATE,
             'forceunique' => 0,
             'signup' => 0,
             'defaultdata' => 1,
@@ -64,5 +66,23 @@ class mbseasyforms {
             mtrace('Creation of custom profile field failed, because of missing category with ID 1');
         }
 
+    }
+
+    /**
+     * Update custom profile field. It should be private.
+     *
+     * @return void
+     */
+    public static function update_custom_profile_field(): void {
+        global $DB;
+
+        $id = $DB->get_field('user_info_field', 'id', ['shortname' => 'mbseasyforms']);
+
+        if ($id) {
+            $DB->update_record('user_info_field', [
+                'id' => $id,
+                'visible' => PROFILE_VISIBLE_PRIVATE,
+            ]);
+        }
     }
 }
