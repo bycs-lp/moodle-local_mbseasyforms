@@ -574,6 +574,12 @@ const gethardcodedconfig = () => {
             "default_disabled": true,
             "elements": []
         },
+        "page-question-type-aitext":
+        {
+            "_comment": "Fragensammlung - AI-Text",
+            "default_disabled": true,
+            "elements": []
+        },
         "page-question-type-algebra":
         {
             "_comment": "Fragensammlung - Algebra",
