@@ -25,7 +25,6 @@
 import $ from 'jquery';
 import Pending from 'core/pending';
 import Templates from 'core/templates';
-import Notification from "core/notification";
 
 let css_hide = "easyhide";
 
@@ -838,6 +837,12 @@ const gethardcodedconfig = () => {
             "_comment": "KI Limitierungs-Einstellungen",
             "default_disabled": true,
             "elements": ["fitem_id_max_requests_period", "id_max_requests_period_number"]
+        },
+        "page-local-ai_manager-purpose_config":
+        {
+            "_comment": "KI Einsatzzwecke",
+            "default_disabled": true,
+            "elements": []
         }
       }`;
     return config;
