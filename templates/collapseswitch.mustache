@@ -47,19 +47,8 @@
 </div>
 
 {{#js}}
-    require(['core_form/collapsesections'], function(Collapsesections) {
-    Collapsesections.init('#collapsesections{{uniqid}}');
+    require(['core_form/collapsesections', 'local_mbseasyforms/collapsealltoggle'], function(Collapsesections, Collapsealltoggle) {
+        Collapsesections.init('#collapsesections{{uniqid}}');
+        Collapsealltoggle.init();
     });
-    // Fix for click on the checkbox directly, since it doesnt change the checked attribute.
-    $(".mbseasycollapseall .custom-switch").on("click", {}, (function () {
-        if ($(".mbseasycollapseall.collapsed").length) {
-            $('.mbseasycollapseall .custom-control-input').prop('checked', true);
-        } else {
-            $('.mbseasycollapseall .custom-control-input').prop('checked', false);
-        }
-        // Matomo tracking.
-        if (typeof _paq !== 'undefined') {
-            _paq.push(['trackEvent', 'Easyforms', 'Click toggle collapse', 'Toggle collapse']);
-        }
-    }));
 {{/js}}
