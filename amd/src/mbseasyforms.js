@@ -104,7 +104,7 @@ const mbseasyforms = async (params) => {
         $('.fitem').each(function () {
             // If not required or submit buttons.
             let isSubmit = ($(this).attr('id') == 'fgroup_id_buttonar' || $(this).parents('#fgroup_id_buttonar').length);
-            if ($(this).find('.fa-exclamation-circle').length !== 1 && !isSubmit) {
+            if ($(this).find('[aria-required="true"]').length !== 1 && !isSubmit) {
                 // If not in specified elements.
                 if (has_config) {
                     var hide = true;
