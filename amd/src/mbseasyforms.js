@@ -846,6 +846,12 @@ const gethardcodedconfig = () => {
             "_comment": "KI Einsatzzwecke",
             "default_disabled": true,
             "elements": []
+        },
+        "page-course-format-tiles-editor-editimage":
+        {
+            "_comment": "Kachelformat Bild upload",
+            "default_disabled": false,
+            "elements": ["fitem_id_tileimagefile"]
         }
       }`;
     return config;
