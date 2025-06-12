@@ -48,7 +48,7 @@ const mbseasyforms = async (params) => {
 
     // Show hidden form after loading is complete.
     const mform = document.querySelector('form.mform');
-    if (mform.length) {
+    if (mform !== null) {
         mform.classList.add('show');
     }
 
@@ -62,7 +62,7 @@ const mbseasyforms = async (params) => {
 
     // Check if there is a form with collapsible-actions on the page.
     const collapsible = document.querySelector('.collapsible-actions');
-    if (mform.length && (collapsible !== null || exceptions.includes(body_id)) && !isShowOnlyPage) {
+    if (mform !== null && (collapsible !== null || exceptions.includes(body_id)) && !isShowOnlyPage) {
         /*variables*/
         /**********/
         var tmp = params.split('#!#');
@@ -96,6 +96,10 @@ const mbseasyforms = async (params) => {
         // Disable for behat testing.
         if (Object.keys(config).length === 0) {
             default_disabled = true;
+        }
+        // Hard exit if no config set.
+        if (!has_config) {
+            die();
         }
 
         /*hide things*/
