@@ -25,7 +25,6 @@
 /* eslint-disable */
 /* TODO fix linting */
 
-import $ from 'jquery';
 import Pending from 'core/pending';
 import Templates from 'core/templates';
 
@@ -48,20 +47,22 @@ export const init = (params) => {
 const mbseasyforms = async (params) => {
 
     // Show hidden form after loading is complete.
-    if ($('form.mform').length) {
-        $('form.mform').addClass('show');
+    const mform = document.querySelector('form.mform');
+    if (mform.length) {
+        mform.classList.add('show');
     }
 
-    var body_id = $('body').attr('id');
+    const body_id = document.querySelector('body').id;
     // exceptions to .collapsible-actions
-    var exceptions = ['page-enrol-editinstance'];
+    const exceptions = ['page-enrol-editinstance'];
 
     // Since Moodle 4.3 you can pass the URL parameter "showonly=..." to an edit form to only show a specific section of the form.
     // In this case we do not want easyforms to hide anything, because the user already specified what he wants to see.
     const isShowOnlyPage = (new URL(document.location)).searchParams.has('showonly');
 
     // Check if there is a form with collapsible-actions on the page.
-    if ($('form.mform').length && ($('.collapsible-actions').length || exceptions.includes(body_id)) && !isShowOnlyPage) {
+    const collapsible = document.querySelector('.collapsible-actions');
+    if (mform.length && (collapsible !== null || exceptions.includes(body_id)) && !isShowOnlyPage) {
         /*variables*/
         /**********/
         var tmp = params.split('#!#');
@@ -93,69 +94,73 @@ const mbseasyforms = async (params) => {
             }
         }
         // Disable for behat testing.
-        if ($.isEmptyObject(config)) {
+        if (Object.keys(config).length === 0) {
             default_disabled = true;
         }
 
         /*hide things*/
         /************/
         // Hide and mark header.
-        $('.ftoggler').each(function () {
-            $(this).addClass(css_hide + ' mbstoggle');
+        document.querySelectorAll('.ftoggler').forEach((element) => {
+            element.classList.add(css_hide, 'mbstoggle');
         });
         // Hide Input rows.
-        $('.fitem').each(function () {
+        document.querySelectorAll('.fitem').forEach((element) => {
             // If not required or submit buttons.
-            let isSubmit = ($(this).attr('id') == 'fgroup_id_buttonar' || $(this).parents('#fgroup_id_buttonar').length);
-            if ($(this).find('.fa-circle-exclamation').length !== 1 && !isSubmit) {
+            let isSubmit = (element.id === 'fgroup_id_buttonar' || element.closest('#fgroup_id_buttonar')  !== null);
+            if (element.querySelectorAll('.fa-circle-exclamation').length !== 1 && !isSubmit) {
                 // If not in specified elements.
                 if (has_config) {
                     var hide = true;
                     for (var i = 0, len = id_arr.length; i < len; i++) {
                         // Dont hide if in config.
-                        if ($(this).is('#' + id_arr[i])) {
+                        if (element.matches('#' + id_arr[i])) {
                             hide = false;
                         }
                         // Check if element has no id, and check childelements for specified elements.
-                        else if (!$(this).prop('id')) {
+                        else if (!element.id) {
                             // Check for elements, that are not fitem_id_elements.
-                            if (id_arr[i].lastIndexOf('item_id_') === -1 && $(this).find('#' + id_arr[i]).length) {
-                                hide = false;
+                            if (id_arr[i].lastIndexOf('item_id_') === -1 && element.querySelector('#' + id_arr[i])) {
+                                    hide = false;
                             }
                         }
                     }
+
                     if (hide) {
-                        $(this).addClass(css_hide + ' mbstoggle');
+                        element.classList.add(css_hide, 'mbstoggle');
                     } else {
                         // Make sure it is visible.
-                        $(this).parents('.fcontainer').removeClass('collapse');
+                        element.closest('.fcontainer').classList.remove('collapse');
                         // Mark element as to show.
-                        $(this).addClass('easyShow');
+                        element.classList.add('easyShow');
                     }
                 } else {
-                    $(this).addClass(css_hide + ' mbstoggle');
+                    element.classList.add(css_hide, 'mbstoggle');
                 }
             } else {
                 // Mark element as to show.
-                $(this).addClass('easyShow');
+                element.classList.add('easyShow');
             }
         });
         // Show easyforms option in user profile.
-        if (body_id == 'page-user-editadvanced') {
-            $('#id_category_1container').parents('.fcontainer').removeClass('collapse');
-            $('#id_category_1container').removeClass('collapse');
-            $('#id_category_1container').children().removeClass('easyhide mbstoggle');
+        if (body_id == 'page-user-editadvanced' || body_id == 'page-user-edit') {
+            const container = document.getElementById('id_category_1container');
+            container.closest('.fcontainer').classList.remove('collapse');
+            container.classList.remove('collapse');
+            container.querySelectorAll(':scope > *').forEach(child => {
+                child.classList.remove('easyhide', 'mbstoggle');
+            });
         }
         // Show invalid options.
-        $('.invalid-feedback[style*="display: block"]').each(function () {
-            $(this).parents('.fitem').removeClass('easyhide mbstoggle');
+        document.querySelectorAll('.invalid-feedback[style*="display: block"]').forEach(element => {
+            element.closest('.fitem').classList.remove('easyhide', 'mbstoggle');
         });
         // Add class to remove used space of hidden elements.
-        $('fieldset.collapsible').each(function () {
-            $(this).addClass('easyAdapt toggleAdapt');
+        document.querySelectorAll('fieldset.collapsible').forEach(element => {
+            element.classList.add('easyAdapt', 'toggleAdapt');
         });
         // Adapt action buttons.
-        $('#fgroup_id_buttonar').addClass("easyon");
+        document.getElementById('fgroup_id_buttonar').classList.add('easyon');
 
         /*Create toggle and collapse all*/
         /*******************/
@@ -163,100 +168,122 @@ const mbseasyforms = async (params) => {
         const {html, js} = await Templates.renderForPromise('local_mbseasyforms/collapseswitch', collapseConfig);
         Templates.replaceNodeContents('.collapsible-actions', html, js);
 
-        // Create bottom toggle link
-        if ($('#fgroup_id_buttonar').length) {
-            $('#fgroup_id_buttonar').prepend("<div class='col-md-9 offset-md-3 mbseasytoggle link'><a href='#' id='scrolltop' role='button' class='easyform bottom " + theme + " btn btn-link p-1'><span>" + showallstring + "</span></a></div>");
+        // Create bottom toggle link.
+        const buttonGroup = document.getElementById('fgroup_id_buttonar');
+        if (buttonGroup) {
+            buttonGroup.insertAdjacentHTML('afterbegin',
+                `<div class='col-md-9 offset-md-3 mbseasytoggle link'>
+                    <a href='#' id='scrolltop' role='button' class='easyform bottom ${theme} btn btn-link p-1'>
+                        <span>${showallstring}</span>
+                    </a>
+                </div>`
+            );
         }
 
         // Set toggle, easyforms enabled?
         if (default_disabled || user_setting === "0") {
-            $('.mbseasytoggle .full').addClass('active');
-            $('.mbseasytoggle .easy').addClass('inactive');
+            addClassToElements('.mbseasytoggle .full', 'active');
+            addClassToElements('.mbseasytoggle .easy', 'inactive');
         } else {
-            $('.mbseasytoggle .easy').addClass('active');
-            $('.mbseasytoggle .full').addClass('inactive');
+            addClassToElements('.mbseasytoggle .easy', 'active');
+            addClassToElements('.mbseasytoggle .full', 'inactive');
         }
         // If easyform disabled through conf or user setting.
         if (default_disabled || user_setting === "0") {
             easyformsdisable();
         }
         // Click on enable easyforms.
-        $(".mbseasytoggle .easy").on("click", {}, (function () {
-            if(!$(this).hasClass("active")) {
+        document.querySelectorAll(".mbseasytoggle .easy").forEach(element => {
+            element.addEventListener("click", function() {
+                if (!this.classList.contains("active")) {
+                    // Reflect change to button.
+                    this.classList.add("active");
+                    this.classList.remove("inactive");
 
-                // Reflect change to button.
-                $(this).addClass("active");
-                $(this).removeClass("inactive");
-                $(".mbseasytoggle .full").addClass("inactive");
-                $(".mbseasytoggle .full").removeClass("active");
+                    document.querySelectorAll(".mbseasytoggle .full").forEach(fullElement => {
+                        fullElement.classList.add("inactive");
+                        fullElement.classList.remove("active");
+                    });
 
-                // Hide all elements not required or defined.
-                easyformsenable();
+                    // Hide all elements not required or defined.
+                    easyformsenable();
 
-                // Matomo tracking.
-                if (typeof _paq !== 'undefined') {
-                    _paq.push(['trackEvent', 'Easyforms', 'Click enable easyforms', 'Enable']);
+                    // Matomo tracking.
+                    if (typeof _paq !== 'undefined') {
+                        _paq.push(['trackEvent', 'Easyforms', 'Click enable easyforms', 'Enable']);
+                    }
                 }
-            }
-        }));
+            });
+        });
         // Click disable easyforms.
-        $(".mbseasytoggle .full").on("click", {}, (function () {
-            if(!$(this).hasClass("active")) {
+        document.querySelectorAll(".mbseasytoggle .full").forEach(element => {
+            element.addEventListener("click", function() {
+                if (!this.classList.contains("active")) {
+                    // Reflect change to button.
+                    this.classList.add("active");
+                    this.classList.remove("inactive");
 
-                // Reflect change to button.
-                $(this).addClass("active");
-                $(this).removeClass("inactive");
-                $(".mbseasytoggle .easy").removeClass("active");
-                $(".mbseasytoggle .easy").addClass("inactive");
+                    document.querySelectorAll(".mbseasytoggle .easy").forEach(easyElement => {
+                        easyElement.classList.remove("active");
+                        easyElement.classList.add("inactive");
+                    });
 
-                // Show hidden elements.
-                easyformsdisable();
+                    // Show hidden elements.
+                    easyformsdisable();
 
-                // Scroll to top if clicked on bottom.
-                if ($(this).attr('id') == 'scrolltop') {
-                    document.getElementById('page').scrollTo({top:265, left:0,  behavior: "smooth"});
-                    // Matomo tracking.
-                    if (typeof _paq !== 'undefined') {
-                        _paq.push(['trackEvent', 'Easyforms', 'Click disable bottom link', 'Bottom link disable']);
-                    }
-                } else {
-                    // Matomo tracking.
-                    if (typeof _paq !== 'undefined') {
-                        _paq.push(['trackEvent', 'Easyforms', 'Click disable easyforms', 'Disable']);
+                    // Scroll to top if clicked on bottom.
+                    if (this.id === 'scrolltop') {
+                        document.getElementById('page').scrollTo({top: 265, left: 0, behavior: "smooth"});
+                        // Matomo tracking.
+                        if (typeof _paq !== 'undefined') {
+                            _paq.push(['trackEvent', 'Easyforms', 'Click disable bottom link', 'Bottom link disable']);
+                        }
+                    } else {
+                        // Matomo tracking.
+                        if (typeof _paq !== 'undefined') {
+                            _paq.push(['trackEvent', 'Easyforms', 'Click disable easyforms', 'Disable']);
+                        }
                     }
                 }
-            }
-        }));
+            });
+        });
         // Click disable easyforms - bottom link.
-        $(".mbseasytoggle .bottom").on("click", {}, (function () {
-            if(!$(".mbseasytoggle .full").hasClass("active")) {
+        document.querySelectorAll(".mbseasytoggle .bottom").forEach(element => {
+            element.addEventListener("click", function() {
+                if (!document.querySelector(".mbseasytoggle .full").classList.contains("active")) {
+                    // Reflect change to button.
+                    document.querySelectorAll(".mbseasytoggle .full").forEach(fullElement => {
+                        fullElement.classList.add("active");
+                        fullElement.classList.remove("inactive");
+                    });
 
-                // Reflect change to button.
-                $(".mbseasytoggle .full").addClass("active")
-                $(".mbseasytoggle .full").removeClass("inactive")
-                $(".mbseasytoggle .easy").addClass("inactive")
-                $(".mbseasytoggle .easy").removeClass("active");
+                    document.querySelectorAll(".mbseasytoggle .easy").forEach(easyElement => {
+                        easyElement.classList.add("inactive");
+                        easyElement.classList.remove("active");
+                    });
 
-                // Show hidden elements.
-                easyformsdisable();
+                    // Show hidden elements.
+                    easyformsdisable();
 
-                // Scroll to top.
-                document.getElementById('page').scrollTo({top:265, left:0,  behavior: "smooth"});
-            }
-        }));
-
-        // Add Collapse all compatibility.
-        $(document).ready(function () {
-            $('.collapseexpand').click(function () {
-                $('.mbstoggle').each(function () {
-                    $(this).removeClass(css_hide);
-                });
-                $('.toggleAdapt').each(function () {
-                    $(this).removeClass("easyAdapt");
-                });
+                    // Scroll to top.
+                    document.getElementById('page').scrollTo({top: 265, left: 0, behavior: "smooth"});
+                }
             });
         });
 
+        // Add Collapse all compatibility.
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.collapseexpand').forEach(element => {
+                element.addEventListener('click', () => {
+                    document.querySelectorAll('.mbstoggle').forEach(toggleElement => {
+                        toggleElement.classList.remove(css_hide);
+                    });
+                    document.querySelectorAll('.toggleAdapt').forEach(adaptElement => {
+                        adaptElement.classList.remove("easyAdapt");
+                    });
+                });
+            });
+        });
         // Matomo tracking.
         if (typeof _paq !== 'undefined') {
             _paq.push(['trackEvent', 'Easyforms', 'Load page', 'Form loaded']);
@@ -266,55 +293,70 @@ const mbseasyforms = async (params) => {
 
 function easyformsenable() {
     // Hide elements.
-    $('.mbstoggle').each(function () {
-        $(this).addClass(css_hide);
+    document.querySelectorAll('.mbstoggle').forEach(element => {
+        element.classList.add(css_hide);
     });
     // Adapt css.
-    $('.toggleAdapt').each(function () {
-        $(this).addClass("easyAdapt");
+    document.querySelectorAll('.toggleAdapt').forEach(element => {
+        element.classList.add("easyAdapt");
     });
     // Adapt actionbuttons.
-    $('#fgroup_id_buttonar').addClass("easyon");
+    document.getElementById('fgroup_id_buttonar').classList.add("easyon");
     // Fix if collapse all was clicked before showall, all would be hidden.
-    $('.easyShow').each(function () {
-        $(this).parents('.collapseable').addClass("collapse");
+    document.querySelectorAll('.easyShow').forEach(element => {
+        const collapseable = element.closest('.collapseable');
+        if (collapseable) {
+            collapseable.classList.add("collapse");
+        }
     });
     // Open .collapseable, should them be closed before.
-    $('.collapsible.easyAdapt .collapseable').each(function () {
-        if ($(this).hasClass('collapse')) {
-            $(this).removeClass('collapse');
+    document.querySelectorAll('.collapsible.easyAdapt .collapseable').forEach(element => {
+        if (element.classList.contains('collapse')) {
+            element.classList.remove('collapse');
         }
     });
     // Hide custom collapse all button.
-    $('.mbseasycollapseall').addClass(css_hide);
-
+    document.querySelectorAll('.mbseasycollapseall').forEach(element => {
+        element.classList.add(css_hide);
+    });
     // Show bottom show all link.
-    $('.mbseasytoggle.link').removeClass(css_hide);
+    document.querySelectorAll('.mbseasytoggle.link').forEach(element => {
+        element.classList.remove(css_hide);
+    });
 }
 
 function easyformsdisable() {
     // Show elements.
-    $('.mbstoggle').each(function () {
-        $(this).removeClass(css_hide);
+    document.querySelectorAll('.mbstoggle').forEach(element => {
+        element.classList.remove(css_hide);
     });
     // Adapt css.
-    $('.toggleAdapt').each(function () {
-        $(this).removeClass("easyAdapt");
+    document.querySelectorAll('.toggleAdapt').forEach(element => {
+        element.classList.remove("easyAdapt");
     });
     // Adapt actionbuttons.
-    $('#fgroup_id_buttonar').removeClass("easyon");
+    document.getElementById('fgroup_id_buttonar').classList.remove("easyon");
     // Show custom collapse all button.
-    $('.mbseasycollapseall').removeClass(css_hide);
+    document.querySelectorAll('.mbseasycollapseall').forEach(element => {
+        element.classList.remove(css_hide);
+    });
     // Close .collapseable child that should be collapsed when showall is clicked.
-    $('.collapsible.collapsed .collapseable').each(function () {
-        if (!$(this).hasClass('collapse')) {
-            $(this).addClass('collapse');
+    document.querySelectorAll('.collapsible.collapsed .collapseable').forEach(element => {
+        if (!element.classList.contains('collapse')) {
+            element.classList.add('collapse');
         }
     });
-
     // Hide bottom show all link.
-    $('.mbseasytoggle.link').addClass(css_hide);
+    document.querySelectorAll('.mbseasytoggle.link').forEach(element => {
+        element.classList.add(css_hide);
+    });
 }
+
+const addClassToElements = (selector, className) => {
+    document.querySelectorAll(selector).forEach(element => {
+        element.classList.add(className);
+    });
+};
 
 const gethardcodedconfig = () => {
     let config = `{
