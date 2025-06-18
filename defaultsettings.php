@@ -442,7 +442,7 @@ define('DEFAULT_SETTING', <<<'EOT'
         {
             "_comment": "Einsschreibemethoden globale Einstellungen",
             "default_disabled": false,
-            "elements": ["fitem_id_status", "fitem_id_roleid", "fitem_id_password", "fitem_id_customint1"]
+            "elements": ["fitem_id_status", "fitem_id_roleid", "enrol_class_custom", "fitem_id_customint4"]
         },
         "page-mod-learningmap-mod":
         {
