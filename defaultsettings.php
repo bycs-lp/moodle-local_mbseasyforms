@@ -517,6 +517,12 @@ define('DEFAULT_SETTING', <<<'EOT'
                                                                "id_strategyopt_strategy_points_totalpoints", "id_strategyopt_strategy_points_maxperchoice",
                                                                "id_strategyopt_strategy_order_countoptions", "id_strategyopt_strategy_tickyes_1" ]
         },
+        "page-mod-ratingallocate-view":
+        {
+            "_comment": "Ratingallocate give_rating",
+            "default_disabled": true,
+            "elements": []
+        },
         "page-question-bank-importquestions-import":
         {
             "_comment": "Fragensammlung import",
