@@ -24,6 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die;
 
+require_once($CFG->dirroot . '/local/mbseasyforms/defaultsettings.php');
+
 if ($hassiteconfig) {
 
     $settings = new admin_settingpage('local_mbseasyforms',
@@ -31,10 +33,18 @@ if ($hassiteconfig) {
 
     $ADMIN->add('localplugins', $settings);
 
-    $settings->add(new admin_setting_configcheckbox('local_mbseasyforms/useeasyformsconfig',
-        get_string('useeasyformsconfig', 'local_mbseasyforms'),
-        '',
-        ''));
+    // Add button to insert default settings.
+    echo "<script id='mbseasyforms_config' type='application/json'>" . DEFAULT_SETTING . "</script>";
+
+    $settings->add(new admin_setting_description(
+        'local_mbseasyforms/defaultsetting',
+        get_string('pastedefaultsetting', 'local_mbseasyforms'),
+        get_string(
+            'pastedefaultsettingdesc',
+            'local_mbseasyforms',
+            DEFAULT_SETTING
+        )
+    ));
 
     $settings->add(new admin_setting_configtextarea('local_mbseasyforms/easyformsconfig',
     get_string('easyformsconfig', 'local_mbseasyforms'),

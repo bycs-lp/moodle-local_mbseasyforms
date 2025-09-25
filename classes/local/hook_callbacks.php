@@ -48,17 +48,13 @@ class hook_callbacks {
             $usembseasyforms = 1;
         }
 
-        $useconfig = get_config('local_mbseasyforms', 'useeasyformsconfig');
-        // Conditional loading for adminconfig, since it triggers a warning because its too big.
-        $config = '';
-        if ($useconfig) {
-            $config = get_config('local_mbseasyforms', 'easyformsconfig');
-        }
+        // Add config to html because of its large size.
+        $config = get_config('local_mbseasyforms', 'easyformsconfig');
+        echo "<script id='mbseasyforms_config' type='application/json'>$config</script>";
 
         // Param needs to be in array format.
         $params = [
-            $theme . '#!#' . $showall . '#!#' . $showless . '#!#' . $collapse . '#!#'
-            . $usembseasyforms . '#!#' . $config . '#!#' . $useconfig,
+            $theme . '#!#' . $showall . '#!#' . $showless . '#!#' . $collapse . '#!#' . $usembseasyforms,
         ];
 
         // Pass them to js and initialize.

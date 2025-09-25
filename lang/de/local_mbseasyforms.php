@@ -26,23 +26,24 @@ defined('MOODLE_INTERNAL') || die();
 $string['collapse'] = 'Alles aufklappen';
 $string['displayname'] = 'Easy Forms';
 $string['easyformsconfig'] = 'Konfiguration';
-$string['easyformsconfig_expl'] = 'Als Standard werden nur benötigte Felder angezeigt.Die Konfiguration um zusätzliche ELemente anzuzeigen des Plugins erfolgt im JSON-Format.<br>
-Beginnend mit der body#id können Elemente über die fitem_id hinzugeschaltet werden.<br>Beispiel:<br>
+$string['easyformsconfig_expl'] = 'Die Konfiguration des Plugins erfolgt im JSON-Format.<br>
+Beginnend mit der body#id können Elemente über die fitem_id_ hinzugeschaltet werden. Falls keine fitem_id_ vorhanden wird die id genutzt.<br>Beispiel:<br>
+Example:<br>
 {<br>
     &nbsp;&nbsp;"page-course-edit":<br>&nbsp;
      &nbsp;&nbsp;{<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;"_comment": "Kurs erstellen - body_id als selektor welche elemente",<br>
         &nbsp;&nbsp;&nbsp;&nbsp;"default_disabled": false,<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;"elements": ["fitem_id_category", "fitem_id_format"]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;"elements": ["fitem_id_category", "fitem_id_format", "id_completionview"]<br>
      &nbsp;&nbsp;},<br>
     &nbsp;&nbsp;"page-user-editadvanced":<br>
      &nbsp;&nbsp;{<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;"_comment": "Nutzerprofil - Standardmäßig deaktiviert - es muss erst angeklickt werden",<br>
         &nbsp;&nbsp;&nbsp;&nbsp;"default_disabled": true,<br>
         &nbsp;&nbsp;&nbsp;&nbsp;"elements": []<br>
      &nbsp;&nbsp;}<br>
 }';
-$string['pluginname'] = 'mebis Easy Forms';
+$string['pastedefaultsetting'] = 'Default Konfiguration einfügen';
+$string['pastedefaultsettingdesc'] = '<button style="margin-top: -.5rem; margin-bottom: .2rem;" type="button" class="btn btn-secondary" onclick=\'let config = document.getElementById("mbseasyforms_config").textContent;document.getElementById("id_s_local_mbseasyforms_easyformsconfig").value=config;\'>Konfiguration ersetzen</';
+$string['pluginname'] = 'mbsEasyforms';
 $string['privacy:metadata:explanationeasyformsenabled'] = 'Aktivieren oder deaktivieren Easy Forms für diesen Nutzer';
 $string['showall'] = 'Ausführliche Eingabe';
 $string['showless'] = 'Vereinfachte Eingabe';
