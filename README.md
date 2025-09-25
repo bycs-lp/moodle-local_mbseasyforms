@@ -13,10 +13,3 @@ Boost.
 2. From the Moodle Administration block, expand Site Administration and click "Notifications".
 3. If desired, options can be added or removed in the local plugin configuration.
    Also a default configuration is now included, which can be add via the administration backend.
-
-## Example configuration (Added on Installtion)
-
-{ configuration ... }
-
-
-
