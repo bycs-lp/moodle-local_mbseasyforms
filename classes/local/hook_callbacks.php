@@ -45,7 +45,12 @@ class hook_callbacks {
         if (isset($USER->profile['mbseasyforms'])) {
             $usembseasyforms = $USER->profile['mbseasyforms'];
         } else {
-            $usembseasyforms = 1;
+            if (defined('BEHAT_SITE_RUNNING') && BEHAT_SITE_RUNNING) {
+                // For Behat tests we want to disable easyforms by default.
+                $usembseasyforms = 0;
+            } else {
+                $usembseasyforms = 1;
+            }
         }
 
         // Add config to html because of its large size.
