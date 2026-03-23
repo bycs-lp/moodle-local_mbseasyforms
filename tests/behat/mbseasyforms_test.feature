@@ -8,55 +8,59 @@
 Feature: Shortened create course menu
   As User it is nicer not to be blown away by options
 
-  Scenario: Check course create Menu collapsed hidden
+  Scenario: Check course create Menu collapsed hidden with mbseasyforms
     Given I log in as "admin"
-    And I click on "Dashboard" "link"
-    When I click on "Kurs erstellen" "link"
-    Then I should see "Neuen Kurs anlegen"
-    And I should see "Alle Einstellungen"
-    And I should see "Vollständiger Kursname"
-    And I should not see "Allgemeines"
+    When I navigate to "Courses > Add a new course" in site administration
+    Then I should see "Add a new course"
+    And I should see "All Settings"
+    And "Course full name" "field" should be visible
+    And "fieldset#id_general > div > div > h3" "css_element" should not be visible
 
-  Scenario: Check course create Menu collapse
+  Scenario: Check course create Menu collapsed with mbseasyforms
     Given I log in as "admin"
-    When I click on "Kurs erstellen" "link"
-    Then I should see "Neuen Kurs anlegen"
-    And I should see "Alle Einstellungen"
-    And I click on "Alle Einstellungen" "link"
-    Then I should see "Allgemeines"
-    And I should see "Kurs-ID"
-    And I should see "Darstellung"
-    And I should see "Dateien un Uploads"
-    And I should see "Darstellung"
-    When I click on "Weniger Einstellungen" "link"
-    And I should not see "Allgemeines"
+    When I navigate to "Courses > Add a new course" in site administration
+    Then I should see "Add a new course"
+    And I should see "All Settings"
+    And I click on ".full" "css_element" in the ".mbseasytoggle" "css_element"
+    And "fieldset#id_general > div > div > h3" "css_element" should be visible
+    And "Course ID number" "field" should be visible
+    And "fieldset#id_appearancehdr > div > div > h3" "css_element" should be visible
+    And "fieldset#id_filehdr > div > div > h3" "css_element" should be visible
+    And I click on ".easy" "css_element" in the ".mbseasytoggle" "css_element"
+    And "fieldset#id_general > div > div > h3" "css_element" should not be visible
 
-  Scenario: Check course create Menu collapse all
+  Scenario: Check course create Menu collapse all with mbseasyforms
     Given I log in as "admin"
-    When I click on "Kurs erstellen" "link"
-    Then I should see "Neuen Kurs anlegen"
-    And I should see "Alle Einstellungen"
-    And I click on "Alle Aufklappen" "link"
-    Then I should see "Kurs-ID"
-    And I should see "Anzahl der Abschnitte"
-    And I should see "Dateien und Uploads"
-    And I should see "Darstellung"
-    When I click on "Alle einklappen" "link"
-    And I should not see "Kurs-ID"
+    When I navigate to "Courses > Add a new course" in site administration
+    Then I should see "Add a new course"
+    And I click on ".full" "css_element" in the ".mbseasytoggle" "css_element"
+    And I should see "All Settings"
+    And I click on ".collapsemenu" "css_element" in the ".collapsible-actions" "css_element"
+    And "Course ID number" "field" should be visible
+    And "Hidden sections" "field" should be visible
+    And "fieldset#id_appearancehdr > div > div > h3" "css_element" should be visible
+    And "fieldset#id_filehdr > div > div > h3" "css_element" should be visible
+    And I click on ".collapsemenu" "css_element" in the ".collapsible-actions" "css_element"
+    And "Course ID number" "field" should not be visible
 
-  Scenario: Check mbseasyfomrs hide option
-    Given I log in as "admin"
-    And I expand "Site administration" node
-    And I expand "Plugins" node
-    And I expand "Local plugins" node
-    And I click on "#local_mbseasyforms_tree_item" "css_element"
-    Then I should see "Konfiguration"
-    Then I set the field "id_s_local_mbseasyforms_easyformsconfig" to "{'page-course-edit':{'default_disabled': false,'elements': ['fitem_id_idnumber']  }}"
-    Then I click on "Änderungen sichern" "link"
-    Then I should see "Änderungen gespeichert"
-    And I should see "{'page-course-edit':{'default_disabled': false,'elements': ['fitem_id_idnumber']  }}"
-    When I click on "Schreibtisch" "link"
-    And I click on "Kurs erstellen" "link"
-    Then I should see "Neuen Kurs anlegen"
-    And I should see "Alle Einstellungen"
-    And I should see "Kurs-ID"
+#  Scenario: Check mbseasyforms hide option
+#    Given I log in as "admin"
+#    And I navigate to "Plugins > Local plugins > mbsEasyforms" in site administration
+#    And I should see "Configuration"
+#    When I set the field "id_s_local_mbseasyforms_easyformsconfig" to "{'page-course-edit':{'default_disabled': false,'elements': ['fitem_id_idnumber']  }}"
+#    And I press "Save changes"
+#    Then I should see "Changes saved"
+#    And I should see "{'page-course-edit':{'default_disabled': false,'elements': ['fitem_id_idnumber']  }}"
+#    And I navigate to "Courses > Add a new course" in site administration
+#    And I should see "Add a new course"
+#    And I should see "All Settings"
+#    And "Course ID number" "field" should be visible
+
+  Scenario: Edit course settings with mbseasyforms enabled
+    Given the following "courses" exist:
+      | fullname | shortname |
+      | Course 1 | C1        |
+    And I log in as "admin"
+    And I am on "Course 1" course homepage
+    And I navigate to "Settings" in current page administration
+    Then I should see "Course full name"

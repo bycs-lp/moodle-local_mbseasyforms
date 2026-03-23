@@ -22,6 +22,9 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+// phpcs:disable moodle.Files.LineLength.TooLong
+// phpcs:disable moodle.Files.LineLength.MaxExceeded
+
 define('DEFAULT_SETTING', <<<'EOT'
     {
         "page-course-edit":

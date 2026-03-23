@@ -41,9 +41,10 @@ use core_privacy\local\request\approved_userlist;
  * @author     Christian Kupfer
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class provider implements \core_privacy\local\metadata\provider,
-        \core_privacy\local\request\plugin\provider,
-        \core_privacy\local\request\core_userlist_provider {
+class provider implements
+    \core_privacy\local\metadata\provider,
+    \core_privacy\local\request\core_userlist_provider,
+    \core_privacy\local\request\plugin\provider {
     /**
      * Returns meta data about this system.
      *
@@ -108,5 +109,4 @@ class provider implements \core_privacy\local\metadata\provider,
     public static function delete_data_for_users(approved_userlist $userlist) {
         // Nothing else to do, deletion in user component.
     }
-
 }

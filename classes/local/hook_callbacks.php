@@ -63,7 +63,8 @@ class hook_callbacks {
 
         // Param needs to be in array format.
         $params = [
-            $theme . '#!#' . $showall . '#!#' . $showless . '#!#' . $collapse . '#!#' . $usembseasyforms . '#!#' . $collapseallalign,
+            $theme . '#!#' . $showall . '#!#' . $showless . '#!#' . $collapse . '#!#' . $usembseasyforms .
+                '#!#' . $collapseallalign,
         ];
 
         // Pass them to js and initialize.

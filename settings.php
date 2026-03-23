@@ -27,9 +27,10 @@ defined('MOODLE_INTERNAL') || die;
 require_once($CFG->dirroot . '/local/mbseasyforms/defaultsettings.php');
 
 if ($hassiteconfig) {
-
-    $settings = new admin_settingpage('local_mbseasyforms',
-        get_string('pluginname', 'local_mbseasyforms'));
+    $settings = new admin_settingpage(
+        'local_mbseasyforms',
+        get_string('pluginname', 'local_mbseasyforms')
+    );
 
     $ADMIN->add('localplugins', $settings);
 
@@ -48,18 +49,25 @@ if ($hassiteconfig) {
         )
     ));
 
-    $settings->add(new admin_setting_configtextarea('local_mbseasyforms/easyformsconfig',
-    get_string('easyformsconfig', 'local_mbseasyforms'),
-    get_string('easyformsconfig_expl', 'local_mbseasyforms'),
-    ''));
+    $settings->add(
+        new admin_setting_configtextarea(
+            'local_mbseasyforms/easyformsconfig',
+            get_string('easyformsconfig', 'local_mbseasyforms'),
+            get_string('easyformsconfig_expl', 'local_mbseasyforms'),
+            DEFAULT_SETTING
+        )
+    );
 
-    $settings->add(new admin_setting_configselect('local_mbseasyforms/collapseallalign',
-        get_string('collapseallalign', 'local_mbseasyforms'),
-        get_string('collapseallalign_desc', 'local_mbseasyforms'),
-        'left',
-        [
-            'left' => get_string('alignleft', 'local_mbseasyforms'),
-            'right' => get_string('alignright', 'local_mbseasyforms'),
-        ]
-    ));
+    $settings->add(
+        new admin_setting_configselect(
+            'local_mbseasyforms/collapseallalign',
+            get_string('collapseallalign', 'local_mbseasyforms'),
+            get_string('collapseallalign_desc', 'local_mbseasyforms'),
+            'left',
+            [
+                'left' => get_string('alignleft', 'local_mbseasyforms'),
+                'right' => get_string('alignright', 'local_mbseasyforms'),
+            ]
+        )
+    );
 }

@@ -33,7 +33,6 @@ function xmldb_local_mbseasyforms_upgrade($oldversion) {
 
     $newversion = 2023011600;
     if ($oldversion < $newversion) {
-
         // Set custom profile field for easyforms.
         \local_mbseasyforms\mbseasyforms::set_custom_profile_field();
 

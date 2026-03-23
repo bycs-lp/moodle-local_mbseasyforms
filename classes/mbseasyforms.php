@@ -35,7 +35,6 @@ require_once(__DIR__ . '/../../../user/profile/lib.php');
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class mbseasyforms {
-
     /**
      * Create a custom profile field.
      * @return void
@@ -54,7 +53,7 @@ class mbseasyforms {
             $data->name = get_string('pluginname', 'local_mbseasyforms');
             $data->id = $DB->insert_record('user_info_category', $data, true);
 
-            $createdcategory = $DB->get_record('user_info_category', array('id' => $data->id));
+            $createdcategory = $DB->get_record('user_info_category', ['id' => $data->id]);
             \core\event\user_info_category_created::create_from_category($createdcategory)->trigger();
 
             // Set custom profile field for easyforms.

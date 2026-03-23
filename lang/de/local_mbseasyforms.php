@@ -23,7 +23,11 @@
  */
 defined('MOODLE_INTERNAL') || die();
 
+$string['alignleft'] = 'Links';
+$string['alignright'] = 'Rechts';
 $string['collapse'] = 'Alles aufklappen';
+$string['collapseallalign'] = 'Ausrichtung Alle zuklappen';
+$string['collapseallalign_desc'] = 'Den Alle-zuklappen-Schalter links oder rechts ausrichten.';
 $string['displayname'] = 'Easy Forms';
 $string['easyformsconfig'] = 'Konfiguration';
 $string['easyformsconfig_expl'] = 'Die Konfiguration des Plugins erfolgt im JSON-Format.<br>
@@ -48,9 +52,5 @@ $string['privacy:metadata:explanationeasyformsenabled'] = 'Aktivieren oder deakt
 $string['showall'] = 'Ausführliche Eingabe';
 $string['showless'] = 'Vereinfachte Eingabe';
 $string['useeasyforms'] = 'Vereinfachte Formulare verwenden';
-$string['collapseallalign'] = 'Ausrichtung Alle zuklappen';
-$string['collapseallalign_desc'] = 'Den Alle-zuklappen-Schalter links oder rechts ausrichten.';
-$string['alignleft'] = 'Links';
-$string['alignright'] = 'Rechts';
 $string['useeasyforms_descr'] = 'Vereinfachte Formulare standardmäßig aktiviert.';
 $string['useeasyformsconfig'] = 'Einbinden der Adminkonfiguration <br> (Ansonsten wird die hartkodierte Konfiguration verwendet)';

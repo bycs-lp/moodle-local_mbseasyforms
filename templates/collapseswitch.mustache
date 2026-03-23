@@ -20,7 +20,7 @@
     Renders a form section header
 
     Context variables required for this template:
-    * showlessstring - button string 
+    * showlessstring - button string
     * showallstring - button string
     * collapsestring - checkbox string
     * alignright - boolean, true to align collapse switch to the right
@@ -39,7 +39,7 @@
         <div class="full">{{showallstring}}</div>
     </div>
 </div>
-<div id="collapsesections{{uniqid}}" class="input-group col-10 mbseasycollapseall {{#alignright}}mbseasycollapseall-right{{/alignright}} easyhide collapsemenu collapsed">
+<div id="collapsesections{{uniqid}}" class="input-group col-10 mbseasycollapseall{{#alignright}} mbseasycollapseall-right{{/alignright}} easyhide collapsemenu collapsed">
     <label class="me-2 mb-0 collapseall" for="easycollapseall">{{collapsestring}}</label>
     <label class="me-2 mb-0 expandall" for="easycollapseall">{{collapsestring}}</label>
     <div class="form-check form-switch">
