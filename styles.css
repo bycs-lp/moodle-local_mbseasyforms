@@ -28,7 +28,8 @@ fieldset.easyAdapt .fcontainer {
   padding: 0px !important;
 }
 
-.mform #fgroup_id_buttonar.easyShow.easyon {
+.mform #fgroup_id_buttonar.easyShow.easyon,
+.mform [data-groupname="buttonar"].easyShow.easyon {
   margin-top: 20px;
 }
 
@@ -132,6 +133,16 @@ div.mbseasytoggle:not(.link):hover {
 }
 .collapsible-actions .mbseasycollapseall {
   margin-top: -0.5rem;
+}
+
+.stickyfooter .mbseasytoggle.link.stickyfooterlink {
+  margin-bottom: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+.stickyfooter .mbseasytoggle.link.stickyfooterlink .btn {
+  white-space: nowrap;
 }
 
 @media (max-width: 420px) {

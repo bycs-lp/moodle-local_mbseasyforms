@@ -30,6 +30,12 @@ import Templates from 'core/templates';
 
 let css_hide = "easyhide";
 
+const actionContainerSelectors = [
+    '#fgroup_id_buttonar',
+    '#sticky-footer [data-groupname="buttonar"]',
+    '.stickyfooter [data-groupname="buttonar"]',
+];
+
 /**
  * Initialize mbseasyforms.
  * @method init
@@ -107,7 +113,7 @@ const mbseasyforms = async (params) => {
         // Hide Input rows.
         document.querySelectorAll('.fitem').forEach((element) => {
             // If not required or submit buttons.
-            let isSubmit = (element.id === 'fgroup_id_buttonar' || element.closest('#fgroup_id_buttonar')  !== null);
+            let isSubmit = isSubmitArea(element);
             if (element.querySelectorAll('.fa-circle-exclamation').length !== 1 && !isSubmit) {
                 // If not in specified elements.
                 if (has_config) {
@@ -160,7 +166,10 @@ const mbseasyforms = async (params) => {
             element.classList.add('easyAdapt', 'toggleAdapt');
         });
         // Adapt action buttons.
-        document.getElementById('fgroup_id_buttonar').classList.add('easyon');
+        const actionButtonContainer = getActionButtonContainer();
+        if (actionButtonContainer) {
+            actionButtonContainer.classList.add('easyon');
+        }
 
         /*Create toggle and collapse all*/
         /*******************/
@@ -169,15 +178,28 @@ const mbseasyforms = async (params) => {
         Templates.replaceNodeContents('.collapsible-actions', html, js);
 
         // Create bottom toggle link.
-        const buttonGroup = document.getElementById('fgroup_id_buttonar');
+        const buttonGroup = getActionButtonContainer();
         if (buttonGroup) {
-            buttonGroup.insertAdjacentHTML('afterbegin',
-                `<div class='col-md-9 offset-md-3 mbseasytoggle link'>
-                    <a href='#' id='scrolltop' role='button' class='easyform bottom ${theme} btn btn-link p-1'>
-                        <span>${showallstring}</span>
-                    </a>
-                </div>`
-            );
+            if (isStickyFooterActionContainer(buttonGroup)) {
+                const stickyButtonRow = buttonGroup.querySelector(':scope > span > .d-flex.flex-wrap.align-items-center');
+                if (stickyButtonRow) {
+                    stickyButtonRow.insertAdjacentHTML('beforeend',
+                        `<div class='mb-3 fitem mbseasytoggle link stickyfooterlink'>
+                            <a href='#' id='scrolltop' role='button' class='easyform bottom ${theme} btn btn-link p-1'>
+                                <span>${showallstring}</span>
+                            </a>
+                        </div>`
+                    );
+                }
+            } else {
+                buttonGroup.insertAdjacentHTML('afterbegin',
+                    `<div class='col-md-9 offset-md-3 mbseasytoggle link'>
+                        <a href='#' id='scrolltop' role='button' class='easyform bottom ${theme} btn btn-link p-1'>
+                            <span>${showallstring}</span>
+                        </a>
+                    </div>`
+                );
+            }
         }
 
         // Set toggle, easyforms enabled?
@@ -301,7 +323,10 @@ function easyformsenable() {
         element.classList.add("easyAdapt");
     });
     // Adapt actionbuttons.
-    document.getElementById('fgroup_id_buttonar').classList.add("easyon");
+    const actionButtonContainer = getActionButtonContainer();
+    if (actionButtonContainer) {
+        actionButtonContainer.classList.add("easyon");
+    }
     // Fix if collapse all was clicked before showall, all would be hidden.
     document.querySelectorAll('.easyShow').forEach(element => {
         const collapseable = element.closest('.collapseable');
@@ -335,7 +360,10 @@ function easyformsdisable() {
         element.classList.remove("easyAdapt");
     });
     // Adapt actionbuttons.
-    document.getElementById('fgroup_id_buttonar').classList.remove("easyon");
+    const actionButtonContainer = getActionButtonContainer();
+    if (actionButtonContainer) {
+        actionButtonContainer.classList.remove("easyon");
+    }
     // Show custom collapse all button.
     document.querySelectorAll('.mbseasycollapseall').forEach(element => {
         element.classList.remove(css_hide);
@@ -356,4 +384,28 @@ const addClassToElements = (selector, className) => {
     document.querySelectorAll(selector).forEach(element => {
         element.classList.add(className);
     });
+};
+
+const getActionButtonContainer = () => {
+    for (const selector of actionContainerSelectors) {
+        const container = document.querySelector(selector);
+        if (container) {
+            return container;
+        }
+    }
+    return null;
+};
+
+const isSubmitArea = (element) => {
+    if (!element) {
+        return false;
+    }
+    return element.id === 'fgroup_id_buttonar'
+        || element.closest('#fgroup_id_buttonar') !== null
+        || element.matches('[data-groupname="buttonar"]')
+        || element.closest('[data-groupname="buttonar"]') !== null;
+};
+
+const isStickyFooterActionContainer = (element) => {
+    return !!element && element.closest('#sticky-footer, .stickyfooter') !== null;
 };

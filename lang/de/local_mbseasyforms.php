@@ -48,4 +48,5 @@ $string['privacy:metadata:explanationeasyformsenabled'] = 'Aktivieren oder deakt
 $string['showall'] = 'Ausführliche Eingabe';
 $string['showless'] = 'Vereinfachte Eingabe';
 $string['useeasyforms'] = 'Vereinfachte Formulare verwenden';
+$string['useeasyforms_descr'] = 'Vereinfachte Formulare standardmäßig aktiviert.';
 $string['useeasyformsconfig'] = 'Einbinden der Adminkonfiguration <br> (Ansonsten wird die hartkodierte Konfiguration verwendet)';
