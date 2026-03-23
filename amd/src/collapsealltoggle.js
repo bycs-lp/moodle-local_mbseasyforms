@@ -24,10 +24,16 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 export const init = () => {
-    document.querySelector('.mbseasycollapseall .custom-switch').addEventListener('click', () => {
+    const toggle = document.querySelector('.mbseasycollapseall .form-switch, .mbseasycollapseall .custom-switch');
+    const controlInput = document.querySelector('.mbseasycollapseall .form-check-input, .mbseasycollapseall .custom-control-input');
+
+    if (!toggle || !controlInput) {
+        return;
+    }
+
+    toggle.addEventListener('click', () => {
         const collapsedElement = document.querySelector('.mbseasycollapseall.collapsed');
-        const custromControlInput = document.querySelector('.mbseasycollapseall .custom-control-input');
-        custromControlInput.checked = !!collapsedElement;
+        controlInput.checked = !!collapsedElement;
 
         // Matomo tracking.
         if (typeof _paq !== 'undefined') {
