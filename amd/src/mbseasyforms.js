@@ -52,11 +52,9 @@ export const init = (params) => {
 
 const mbseasyforms = async (params) => {
 
-    // Show hidden form after loading is complete.
-    const mform = document.querySelector('form.mform');
-    if (mform !== null) {
-        mform.classList.add('show');
-    }
+    // Show hidden forms after loading is complete.
+    document.querySelectorAll('form.mform').forEach(form => form.classList.add('show'));
+    const mform = document.querySelector('#page form.mform');
 
     const body_id = document.querySelector('body').id;
     // exceptions to .collapsible-actions
