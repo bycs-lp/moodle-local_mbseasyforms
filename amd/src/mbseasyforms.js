@@ -55,7 +55,8 @@ const mbseasyforms = async (params) => {
 
     // Show hidden forms after loading is complete.
     document.querySelectorAll('form.mform').forEach(form => form.classList.add('show'));
-    const mform = document.querySelector('#page form.mform');
+    // core/search_input boxes (e.g. the wiki search) also carry the mform class; they are never a target.
+    const mform = document.querySelector('#page form.mform:not(.simplesearchform)');
 
     const bodyId = document.querySelector('body').id;
 
@@ -188,6 +189,8 @@ const mbseasyforms = async (params) => {
             showlessstring: showlessstring,
             collapsestring: collapsestring,
             alignright: collapseallalign === 'right',
+            // core_form/collapsesections resolves its form from the switch node, so check this form only.
+            skipcollapseinit: mform.querySelector('fieldset.collapsible') === null,
         };
         const {html, js} = await Templates.renderForPromise('local_mbseasyforms/collapseswitch', collapseConfig);
         const collapsibleActions = document.querySelector('.collapsible-actions');
@@ -200,12 +203,6 @@ const mbseasyforms = async (params) => {
             wrapper.classList.add('row', 'collapsible-actions');
             mform.prepend(wrapper);
             Templates.replaceNodeContents(wrapper, html, js);
-        }
-
-        // Remove the collapse-all switch when the form has no collapsible sections,
-        // otherwise it would be revealed (empty and useless) when easyforms is disabled.
-        if (document.querySelector('fieldset.collapsible') === null) {
-            document.querySelectorAll('.mbseasycollapseall.collapsemenu').forEach(element => element.remove());
         }
 
         // Create bottom toggle link.
