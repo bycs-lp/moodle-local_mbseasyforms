@@ -201,12 +201,6 @@ define('DEFAULT_SETTING', <<<'EOT'
             "default_disabled": false,
             "elements": [ "fitem_id_introeditor", "fitem_id_showdescription", "fitem_id_wikimode", "fitem_id_completion", "id_completionview"]
         },
-        "page-mod-wiki-view":
-        {
-            "_comment": "Wiki",
-            "default_disabled": true,
-            "elements": [ "fitem_id_config_enabledock"]
-        },
         "page-mod-book-mod":
         {
             "_comment": "",

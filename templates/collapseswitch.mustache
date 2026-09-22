@@ -24,13 +24,15 @@
     * showallstring - button string
     * collapsestring - checkbox string
     * alignright - boolean, true to align collapse switch to the right
+    * skipcollapseinit - boolean, optional, true to omit the collapse-all switch and its JS
 
     Example context (json):
     {
         "showlessstring": "showlessstring",
         "showallstring": "showallstring",
         "collapsestring": "collapsestring",
-        "alignright": false
+        "alignright": false,
+        "skipcollapseinit": false
     }
 }}
 <div class="col-12 {{#alignright}}col-md-12{{/alignright}}{{^alignright}}col-md-10{{/alignright}}">
@@ -39,6 +41,7 @@
         <div class="full">{{showallstring}}</div>
     </div>
 </div>
+{{^skipcollapseinit}}
 <div id="collapsesections{{uniqid}}" class="input-group col-10 mbseasycollapseall{{#alignright}} mbseasycollapseall-right{{/alignright}} easyhide collapsemenu collapsed">
     <label class="me-2 mb-0 collapseall" for="easycollapseall">{{collapsestring}}</label>
     <label class="me-2 mb-0 expandall" for="easycollapseall">{{collapsestring}}</label>
@@ -54,3 +57,4 @@
         Collapsealltoggle.init();
     });
 {{/js}}
+{{/skipcollapseinit}}

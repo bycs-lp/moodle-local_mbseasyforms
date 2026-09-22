@@ -74,5 +74,12 @@ function xmldb_local_mbseasyforms_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2026082400, 'local', 'mbseasyforms');
     }
 
+    if ($oldversion < 2026092200) {
+        // Drop the stale wiki view entry. Wiki search is a search form, not an easyforms page.
+        \local_mbseasyforms\mbseasyforms::update_default_config();
+
+        upgrade_plugin_savepoint(true, 2026092200, 'local', 'mbseasyforms');
+    }
+
     return true;
 }
