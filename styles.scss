@@ -1,16 +1,4 @@
 /* stylelint-disable */
-html {
-    --color-input-bg-disabled: var(--bs-secondary-bg);
-    --color-white: var(--bs-white);
-    --color-easyforms-border: var(--bs-gray-400);
-    --color-gray-light: var(--bs-dark-border-subtle);
-    --color-content-bg: var(--bs-body-bg);
-    --color-input-bg-disabled: var(--bs-dark-text-emphasis);
-    --color-input-border: var(--bs-body-color);
-    --color-neutral-100: var(--bs-gray-200);
-    --color-gray-light: var(--bs-gray-100);
-}
-
 /*hide elements*/
 div.easyhide {
     display: none !important;
@@ -73,10 +61,10 @@ fieldset.easyAdapt.collapsed .moreless-actions {
 }
 
 div.mbseasytoggle:not(.link) {
-    background-color: var(--color-white);
+    background-color: #fff;
     padding: 0;
     border-radius: 3rem;
-    border: 1px solid var(--color-easyforms-border);
+    border: 1px solid var(--mds-border-default, var(--bs-border-color));
     transition: background-color 0.25s;
     // Change background only if hovering child inactive.
     pointer-events: none;
@@ -84,18 +72,18 @@ div.mbseasytoggle:not(.link) {
         pointer-events: auto;
     }
     &:hover {
-        background-color: var(--color-gray-light);
+        background-color: var(--mds-bg-surface-subtle, var(--bs-gray-100));
     }
 }
-.dark div.mbseasytoggle:not(.link) {
-    background-color: var(--color-content-bg);
-    border-color: var(--color-input-bg-disabled);
+[data-bs-theme="dark"] div.mbseasytoggle:not(.link) {
+    background-color: var(--mds-bg-surface-default, var(--bs-body-bg));
+    border-color: var(--mds-bg-surface-strong, var(--bs-secondary-bg));
     &:hover  {
-        background-color: var(--color-input-bg-disabled);
+        background-color: var(--mds-bg-surface-strong, var(--bs-secondary-bg));
     }
 }
 .contrast div.mbseasytoggle:not(.link) {
-    border: 2px solid var(--color-input-border);
+    border: 2px solid var(--mds-border-default, var(--bs-border-color));
 }
 
 .mbseasytoggle div {
@@ -113,18 +101,18 @@ div.mbseasytoggle:not(.link) {
         border-radius: 3rem;
     }
     .active {
-        background-color: var(--color-neutral-100);
+        background-color: var(--mds-bg-surface-strong, var(--bs-gray-200));
         cursor: inherit;
     }
     & > div.active:hover {
-        background-color: var(--color-neutral-100);
+        background-color: var(--mds-bg-surface-strong, var(--bs-gray-200));
     }
 }
 
-.dark .mbseasytoggle .active {
-    background-color: var(--color-gray-light);
+[data-bs-theme="dark"] .mbseasytoggle .active {
+    background-color: var(--mds-bg-surface-subtle, var(--bs-gray-100));
     &:hover {
-        background-color: var(--color-gray-light);
+        background-color: var(--mds-bg-surface-subtle, var(--bs-gray-100));
     }
 }
 
