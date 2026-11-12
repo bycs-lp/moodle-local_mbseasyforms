@@ -71,11 +71,11 @@ div.mbseasytoggle:not(.link):hover {
   background-color: var(--mds-bg-surface-subtle, var(--bs-gray-100));
 }
 
-.dark div.mbseasytoggle:not(.link) {
+[data-bs-theme=dark] div.mbseasytoggle:not(.link) {
   background-color: var(--mds-bg-surface-default, var(--bs-body-bg));
   border-color: var(--mds-bg-surface-strong, var(--bs-secondary-bg));
 }
-.dark div.mbseasytoggle:not(.link):hover {
+[data-bs-theme=dark] div.mbseasytoggle:not(.link):hover {
   background-color: var(--mds-bg-surface-strong, var(--bs-secondary-bg));
 }
 
@@ -105,10 +105,10 @@ div.mbseasytoggle:not(.link):hover {
   background-color: var(--mds-bg-surface-strong, var(--bs-gray-200));
 }
 
-.dark .mbseasytoggle .active {
+[data-bs-theme=dark] .mbseasytoggle .active {
   background-color: var(--mds-bg-surface-subtle, var(--bs-gray-100));
 }
-.dark .mbseasytoggle .active:hover {
+[data-bs-theme=dark] .mbseasytoggle .active:hover {
   background-color: var(--mds-bg-surface-subtle, var(--bs-gray-100));
 }
 
